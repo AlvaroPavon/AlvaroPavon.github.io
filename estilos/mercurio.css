@@ -1,0 +1,35 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+body{
+    background-image: url(../img/galaxia.jpg);
+}
+#mercurio{
+    font-size: xx-large;
+    color: white;
+}
+#texto{
+    color: white;
+    text-align: left;
+}
+#enlace{
+    color: aqua;
+    position: relative;
+    top: 720px;
+    font-size: 60px;
+}
+#volver{
+    position: relative;
+    color: aqua;
+    top: 750px;
+    font-size: 30px;
+}
+.imagen{
+    position: absolute;
+
+
+}
+a:visited{
+    color: red;
+}

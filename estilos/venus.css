@@ -1,0 +1,34 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+body{
+    background-image: url(../img/galaxia.jpg);
+}
+#venus{
+    font-size: xx-large;
+    color: white;
+}
+#texto{
+    color: white;
+    text-align: left;
+}
+#enlace{
+    color: aqua;
+    position: relative;
+    top: 300px;
+    font-size: 60px;
+}
+#volver{
+    position: relative;
+    color: aqua;
+    top: 320px;
+    font-size: 30px;
+}
+.imagen{
+    position: absolute;
+    left: 45%;
+}
+a:visited{
+    color: red;
+}
