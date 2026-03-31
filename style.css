@@ -46,6 +46,7 @@ body.root-mode .cmd-btn:hover { background: var(--text-color); color: #ffffff; }
 }
 .badge-img {
     margin-top: 10px;
+    margin-bottom: 10px;
     max-width: 100%;
     border: 1px dashed var(--border-color);
     padding: 5px;

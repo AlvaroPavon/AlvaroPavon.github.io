@@ -27,48 +27,50 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Base de datos de CV
     const systemData = {
-        help: `Comandos disponibles: <br>- <span class="highlight">whoami</span>: Información del sistema<br>- <span class="highlight">sobre_mi</span>: Perfil profesional<br>- <span class="highlight">experiencia</span>: Historial laboral<br>- <span class="highlight">formacion</span>: Académico y cursos<br>- <span class="highlight">proyectos</span>: Descargar repositorios (GitHub)<br>- <span class="highlight">proyecto_destacado</span>: Deep Dive en automatización Python<br>- <span class="highlight">hackthebox</span>: Insignia de HTB<br>- <span class="highlight">cv</span>: Descargar Currículum en PDF<br>- <span class="highlight">contacto</span>: Vías de comunicación<br>- <span class="highlight">clear</span>: Limpiar pantalla`,
+        help: `Comandos disponibles: <br>- <span class="highlight">whoami</span>: Información del sistema<br>- <span class="highlight">sobre_mi</span>: Perfil profesional<br>- <span class="highlight">experiencia</span>: Historial laboral<br>- <span class="highlight">formacion</span>: Académico y cursos<br>- <span class="highlight">proyectos</span>: Descargar repositorios (GitHub)<br>- <span class="highlight">proyecto_destacado</span>: Deep Dive en StatTracker (PHP/MySQL)<br>- <span class="highlight">hackthebox</span>: Perfiles y Redes<br>- <span class="highlight">cv</span>: Descargar Currículum en PDF<br>- <span class="highlight">contacto</span>: Vías de comunicación<br>- <span class="highlight">clear</span>: Limpiar pantalla`,
         
         whoami: asciiLogo,
 
-        sobre_mi: `Álvaro Pavón Martínez. Programador Junior especializado en el desarrollo de aplicaciones y automatización de procesos con Python[cite: 30]. Cuento con experiencia práctica en entornos Linux y conocimientos sólidos en programación[cite: 31]. Soy un perfil resolutivo y autónomo, con gran capacidad de adaptación y muchas ganas de aprender y desarrollarme en entornos multiplataforma de gran escala e infraestructuras complejas[cite: 32].`,
+        sobre_mi: `Álvaro Pavón Martínez. Programador Junior especializado en el desarrollo de aplicaciones y automatización de procesos con Python. Cuento con experiencia práctica en entornos Linux y conocimientos sólidos en programación. Soy un perfil resolutivo y autónomo, con gran capacidad de adaptación y muchas ganas de aprender y desarrollarme en entornos multiplataforma de gran escala e infraestructuras complejas.`,
         
         experiencia: `
-            <strong>> PlantaSur (2025)</strong><br>Programador Junior. Desarrollo de aplicaciones y scripts con Python. Automatización de procesos y generación de reportes[cite: 4, 5, 6].<br><br>
-            <strong>> NanoBytes (2022)</strong><br>Programador Junior. Programación de aplicaciones con Python, JavaScript y gestión de bases de datos relacionales (SQL) en entornos ODOO[cite: 9, 10, 11].<br><br>
-            <strong>> MediaMarkt (2021-2023) & Beep Informática (2021)</strong><br>Asesor / Dependiente sección informática. Instalación de sistemas, reparación y montaje de dispositivos y atención al cliente[cite: 7, 8, 12, 13, 14].
+            <strong>> PlantaSur (2025)</strong><br>Programador Junior. Desarrollo de aplicaciones y scripts con Python. Automatización de procesos y generación de reportes.<br><br>
+            <strong>> NanoBytes (2022)</strong><br>Programador Junior. Programación de aplicaciones con Python, JavaScript y gestión de bases de datos relacionales (SQL) en entornos ODOO.<br><br>
+            <strong>> MediaMarkt (2021-2023) & Beep Informática (2021)</strong><br>Asesor / Dependiente sección informática. Instalación de sistemas, reparación y montaje de dispositivos y atención al cliente.
         `,
         
         formacion: `
             >> FORMACIÓN REGLADA:<br>
-            - Especialización Ciberseguridad | IES Zaidin Vergeles (2025-2026 - En curso)[cite: 16].<br>
-            - FPGS. Desarrollo de Aplicaciones Multiplataforma | Atlántida CIDEP (2023-2025)[cite: 16, 17].<br>
-            - Certificado: Programación de sistemas informáticos | Academia El Futuro (2022). Administración y uso avanzado de terminal en sistemas Linux, incluyendo Bash Scripting[cite: 18, 19].<br><br>
+            - Especialización Ciberseguridad | IES Zaidin Vergeles (2025-2026 - En curso).<br>
+            - FPGS. Desarrollo de Aplicaciones Multiplataforma | Atlántida CIDEP (2023-2025).<br>
+            - Certificado: Programación de sistemas informáticos | Academia El Futuro (2022). Administración y uso avanzado de terminal en sistemas Linux, incluyendo Bash Scripting.<br><br>
             >> FORMACIÓN COMPLEMENTARIA:<br>
-            - Ciberseguridad | The Valley (2023)[cite: 22].<br>
-            - Master completo en Java | Udemy (2022)[cite: 23].<br>
-            - Internet Seguro | KLC Formación (2021)[cite: 24].<br>
-            - Desarrollo de Apps móviles, E-Commerce, Cloud Computing | EOI & Google (2019)[cite: 25, 26].<br>
-            - Introducción al Desarrollo Web | IEI & Google (2017)[cite: 27, 28].
+            - Ciberseguridad | The Valley (2023).<br>
+            - Master completo en Java | Udemy (2022).<br>
+            - Internet Seguro | KLC Formación (2021).<br>
+            - Desarrollo de Apps móviles, E-Commerce, Cloud Computing | EOI & Google (2019).<br>
+            - Introducción al Desarrollo Web | IEI & Google (2017).
         `,
 
         proyecto_destacado: `
-            >> DEEP DIVE: Automatización de Reportes (Python)<br>
-            <span class="highlight">Contexto:</span> Durante mi experiencia como Programador Junior ha sido vital la optimización de procesos[cite: 5, 30].<br>
-            <span class="highlight">Solución:</span> Desarrollo y automatización mediante scripts en Python ejecutados en entornos Linux [cite: 5, 31], extrayendo datos y estructurando reportes de forma autónoma, minimizando errores y agilizando la gestión[cite: 41, 47].
+            >> DEEP DIVE: StatTracker - Gestión de Estadísticas de Salud<br>
+            <span class="highlight">Descripción:</span> Aplicación web MVC desarrollada en PHP (Nativo), MySQL (PDO), JS (Chart.js) y Tailwind CSS para el registro y gestión de métricas corporales (peso, altura, cálculo automático de IMC).<br>
+            <span class="highlight">Desarrollo:</span> Implementa sistema de autenticación seguro (bcrypt), historial interactivo de evolución, aislamiento de datos por usuario y código probado con más de un 85% de cobertura en tests unitarios (PHPUnit).<br>
+            <span class="highlight">Seguridad:</span> Auditada bajo el estándar OWASP ASVS (Nivel 2), con mitigación contra SQLi mediante el uso de sentencias preparadas y protección con tokens Anti-CSRF.<br>
+            <span class="highlight">Repositorio:</span> <a href="https://github.com/AlvaroPavon/StatTracker" target="_blank" rel="noopener noreferrer" style="color:var(--text-color);">Ver proyecto en GitHub</a>
         `,
 
         hackthebox: `
             >> PERFILES TÉCNICOS Y REDES:<br>
-            - <strong>HackTheBox:</strong> [cite: 53]<br>
-            <img src="https://www.hackthebox.eu/badge/image/TU_ID_AQUI" alt="HTB Badge" class="badge-img"><br>
-            - <strong>LinkedIn:</strong> <a href="#" target="_blank" rel="noopener noreferrer">Ver Perfil</a> [cite: 52]
+            - <strong>HackTheBox:</strong> <a href="https://app.hackthebox.com/users/1504123?profile-top-tab=machines&ownership-period=1M&profile-bottom-tab=prolabs" target="_blank" rel="noopener noreferrer" style="color:var(--text-color);">Ver Perfil Completo</a><br>
+            <a href="https://app.hackthebox.com/users/1504123" target="_blank" rel="noopener noreferrer"><img src="https://www.hackthebox.eu/badge/image/1504123" alt="HTB Badge" class="badge-img"></a><br>
+            - <strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/alvaropavonmartinez/" target="_blank" rel="noopener noreferrer" style="color:var(--text-color);">Ver Perfil de LinkedIn</a>
         `,
 
         contacto: `
             >> DATOS DE CONTACTO:<br>
-            - <span class="highlight">Email:</span> <a href="mailto:alvaropavonmartinez7@gmail.com" style="color:inherit;">alvaropavonmartinez7@gmail.com</a> [cite: 35]<br>
-            - <span class="highlight">Teléfono:</span> <a href="tel:+34662443794" style="color:inherit;">662 44 37 94</a> [cite: 34]
+            - <span class="highlight">Email:</span> <a href="mailto:alvaropavonmartinez7@gmail.com" style="color:inherit;">alvaropavonmartinez7@gmail.com</a><br>
+            - <span class="highlight">Teléfono:</span> <a href="tel:+34662443794" style="color:inherit;">662 44 37 94</a>
         `
     };
 
