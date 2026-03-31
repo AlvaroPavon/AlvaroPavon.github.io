@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Álvaro Pavón Martínez | Portfolio Terminal</title>
+    <title>Álvaro Pavón | Terminal OS</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div id="login-screen" class="terminal-container">
         <div class="login-box">
             <h2>> SISTEMA RESTRINGIDO_</h2>
-            <p class="sys-msg">Inicie sesión para ver el perfil.</p>
+            <p class="sys-msg">Inicie sesión para acceder a la terminal.</p>
             
             <div class="input-group">
                 <label for="username">Usuario:</label>
@@ -22,54 +22,34 @@
             </div>
             
             <button id="hack-btn" class="btn-hack">> [ HACK ]_</button>
-            <p id="access-msg" class="hidden blinking-text">Autenticando... ACCESO CONCEDIDO</p>
+            <p id="access-msg" class="hidden blinking-text">ACCESO CONCEDIDO</p>
         </div>
     </div>
 
     <main id="portfolio-content" class="hidden">
-        <div class="scanlines"></div> <header class="terminal-header">
-            <h1>> ÁLVARO_PAVÓN_MARTÍNEZ</h1>
-            <p>## PROGRAMADOR JUNIOR | CIBERSEGURIDAD ##</p>
-        </header>
-
-        <section class="terminal-section">
-            <h2>> cat sobre_mi.txt</h2>
-            <p>Programador Junior especializado en el desarrollo de aplicaciones y automatización de procesos con Python[cite: 30]. Cuento con experiencia práctica en entornos Linux y conocimientos sólidos en programación[cite: 31]. Especialización en Ciberseguridad en curso[cite: 16].</p>
-            <p><strong>Capacidades:</strong> Python, Java / C, Linux / Bash Scripting, SQL[cite: 37, 38, 39, 40].</p>
-        </section>
-
-        <section class="terminal-section">
-            <h2>> ./listar_experiencia.sh</h2>
-            
-            <div class="card terminal-card">
-                <h3>> PlantaSur (2025)</h3>
-                <p>Programador Junior[cite: 4, 6]. Desarrollo de aplicaciones y scripts con Python[cite: 5]. Automatización de procesos y generación de reportes[cite: 5].</p>
-            </div>
-
-            <div class="card terminal-card">
-                <h3>> NanoBytes (2022)</h3>
-                <p>Programador Junior[cite: 9, 11]. Programación de aplicaciones con Python, JavaScript y gestión de bases de datos relacionales (SQL) en entornos ODOO[cite: 10].</p>
+        <div class="scanlines"></div>
+        
+        <div id="terminal-wrapper">
+            <div id="terminal-output">
+                <p>> ÁLVARO_OS v1.0.0 inicializado.</p>
+                <p>> Autenticación correcta. Bienvenido, invitado.</p>
+                <p>> Escriba <span class="highlight">help</span> o seleccione un comando de acceso rápido.</p>
             </div>
             
-            <div class="card terminal-card">
-                <h3>> MediaMarkt & Beep Informática (2021-2023)</h3>
-                <p>Asesor / Dependiente sección informática[cite: 7]. Instalación de sistemas informáticos, reparación y montaje de dispositivos y atención al cliente[cite: 13, 14].</p>
+            <div id="command-menu" class="cmd-menu">
+                <button class="cmd-btn" data-cmd="sobre_mi">[ sobre_mi ]</button>
+                <button class="cmd-btn" data-cmd="experiencia">[ experiencia ]</button>
+                <button class="cmd-btn" data-cmd="formacion">[ formacion ]</button>
+                <button class="cmd-btn" data-cmd="capacidades">[ capacidades ]</button>
+                <button class="cmd-btn" data-cmd="proyectos">[ proyectos ]</button>
+                <button class="cmd-btn" data-cmd="clear">[ clear ]</button>
             </div>
-        </section>
 
-        <section class="terminal-section">
-            <h2>> cat formacion.log</h2>
-            <ul>
-                <li><strong>Especialización Ciberseguridad</strong> - IES Zaidin Vergeles (2025-2026)[cite: 16].</li>
-                <li><strong>FPGS. Desarrollo de Aplicaciones Multiplataforma</strong> - Atlántida CIDEP (2023-2025)[cite: 16, 17].</li>
-                <li><strong>Programación de sistemas informáticos</strong> - Academia El Futuro (2022)[cite: 18, 19].</li>
-            </ul>
-        </section>
-
-        <section class="terminal-section">
-            <h2>> fetch --github_repos</h2>
-            <div id="github-repos" class="grid">Cargando repositorios desde la API...</div>
-        </section>
+            <div class="input-line">
+                <span class="prompt">guest@alvaro-os:~$</span>
+                <input type="text" id="cmd-input" autocomplete="off" spellcheck="false">
+            </div>
+        </div>
     </main>
 
     <script src="app.js"></script>
