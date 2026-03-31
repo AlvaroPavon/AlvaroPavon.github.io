@@ -36,6 +36,21 @@ body.root-mode .scanlines {
 body.root-mode .highlight { background: var(--border-color); color: #ffffff; }
 body.root-mode .cmd-btn:hover { background: var(--text-color); color: #ffffff; }
 
+/* Arte ASCII y utilidades */
+.ascii-art {
+    font-family: monospace;
+    white-space: pre-wrap;
+    color: var(--text-color);
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+}
+.badge-img {
+    margin-top: 10px;
+    max-width: 100%;
+    border: 1px dashed var(--border-color);
+    padding: 5px;
+}
+
 /* Login Estilos */
 .terminal-container { height: 100vh; display: flex; justify-content: center; align-items: center; transition: opacity 0.5s; }
 .login-box { border: 2px solid var(--border-color); padding: 2rem; width: 90%; max-width: 400px; background: #0a0a0a; z-index: 10;}
@@ -79,7 +94,7 @@ input[type="text"], input[type="password"] { width: 90%; padding: 0.5rem; backgr
 #cmd-input { flex-grow: 1; border: none; background: transparent; color: var(--text-color); font-family: var(--font-terminal); font-size: 1rem; outline: none; }
 
 .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1rem; }
-.card { border: 1px solid var(--border-color); padding: 1rem; transition: transform 0.2s;}
+.card { border: 1px solid var(--border-color); padding: 1rem; transition: transform 0.2s; background: #0d0d0d;}
 .card:hover { transform: translateY(-3px); border-color: var(--text-color);}
 .card a { color: var(--text-color); text-decoration: none;}
 .card a:hover { text-decoration: underline; }
