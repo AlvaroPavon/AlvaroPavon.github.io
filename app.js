@@ -25,13 +25,12 @@ document.addEventListener('DOMContentLoaded', () => {
 ---------------------------------------
 </div>`;
 
-    // Base de datos de CV
     const systemData = {
-        help: `Comandos disponibles: <br>- <span class="highlight">whoami</span>: Información del sistema<br>- <span class="highlight">sobre_mi</span>: Perfil profesional<br>- <span class="highlight">experiencia</span>: Historial laboral<br>- <span class="highlight">formacion</span>: Académico y cursos<br>- <span class="highlight">proyectos</span>: Descargar repositorios (GitHub)<br>- <span class="highlight">proyecto_destacado</span>: Deep Dive en StatTracker (PHP/MySQL)<br>- <span class="highlight">hackthebox</span>: Perfiles y Redes<br>- <span class="highlight">cv</span>: Descargar Currículum en PDF<br>- <span class="highlight">contacto</span>: Vías de comunicación<br>- <span class="highlight">clear</span>: Limpiar pantalla`,
+        help: `Comandos disponibles: <br>- <span class="highlight">whoami</span>: Información del sistema<br>- <span class="highlight">sobre_mi</span>: Perfil profesional<br>- <span class="highlight">experiencia</span>: Historial laboral<br>- <span class="highlight">formacion</span>: Académico y cursos<br>- <span class="highlight">proyectos</span>: Descargar repositorios (GitHub)<br>- <span class="highlight">proyecto_destacado</span>: Deep Dive en StatTracker (PHP/MySQL)<br>- <span class="highlight">hackthebox</span>: Perfiles y Redes<br>- <span class="highlight">cv</span>: Descargar Currículum en PDF<br>- <span class="highlight">contacto</span>: Vías de comunicación<br>- <span class="highlight">colaborar</span>: Propuestas para desarrolladores<br>- <span class="highlight">clear</span>: Limpiar pantalla`,
         
         whoami: asciiLogo,
 
-        sobre_mi: `Álvaro Pavón Martínez. Programador Junior especializado en el desarrollo de aplicaciones y automatización de procesos con Python. Cuento con experiencia práctica en entornos Linux y conocimientos sólidos en programación. Soy un perfil resolutivo y autónomo, con gran capacidad de adaptación y muchas ganas de aprender y desarrollarme en entornos multiplataforma de gran escala e infraestructuras complejas.`,
+        sobre_mi: `Álvaro Pavón Martínez. Programador Junior especializado en el desarrollo de aplicaciones y automatización de procesos con Python. Cuento con experiencia práctica en entornos Linux y conocimientos sólidos en programación. Perfil resolutivo y autónomo con gran capacidad de adaptación e interés en infraestructuras complejas.`,
         
         experiencia: `
             <strong>> PlantaSur (2025)</strong><br>Programador Junior. Desarrollo de aplicaciones y scripts con Python. Automatización de procesos y generación de reportes.<br><br>
@@ -43,20 +42,18 @@ document.addEventListener('DOMContentLoaded', () => {
             >> FORMACIÓN REGLADA:<br>
             - Especialización Ciberseguridad | IES Zaidin Vergeles (2025-2026 - En curso).<br>
             - FPGS. Desarrollo de Aplicaciones Multiplataforma | Atlántida CIDEP (2023-2025).<br>
-            - Certificado: Programación de sistemas informáticos | Academia El Futuro (2022). Administración y uso avanzado de terminal en sistemas Linux, incluyendo Bash Scripting.<br><br>
+            - Certificado: Programación de sistemas informáticos | Academia El Futuro (2022).<br><br>
             >> FORMACIÓN COMPLEMENTARIA:<br>
-            - Ciberseguridad | The Valley (2023).<br>
             - Master completo en Java | Udemy (2022).<br>
+            - Ciberseguridad | The Valley (2023).<br>
             - Internet Seguro | KLC Formación (2021).<br>
-            - Desarrollo de Apps móviles, E-Commerce, Cloud Computing | EOI & Google (2019).<br>
-            - Introducción al Desarrollo Web | IEI & Google (2017).
+            - Apps móviles, E-Commerce, Cloud Computing | EOI & Google (2019).
         `,
 
         proyecto_destacado: `
             >> DEEP DIVE: StatTracker - Gestión de Estadísticas de Salud<br>
-            <span class="highlight">Descripción:</span> Aplicación web MVC desarrollada en PHP (Nativo), MySQL (PDO), JS (Chart.js) y Tailwind CSS para el registro y gestión de métricas corporales (peso, altura, cálculo automático de IMC).<br>
-            <span class="highlight">Desarrollo:</span> Implementa sistema de autenticación seguro (bcrypt), historial interactivo de evolución, aislamiento de datos por usuario y código probado con más de un 85% de cobertura en tests unitarios (PHPUnit).<br>
-            <span class="highlight">Seguridad:</span> Auditada bajo el estándar OWASP ASVS (Nivel 2), con mitigación contra SQLi mediante el uso de sentencias preparadas y protección con tokens Anti-CSRF.<br>
+            <span class="highlight">Descripción:</span> Aplicación web MVC en PHP y MySQL (PDO) para gestión de métricas corporales.<br>
+            <span class="highlight">Seguridad:</span> Auditada bajo OWASP ASVS (Nivel 2). Uso de bcrypt para contraseñas y sentencias preparadas contra SQLi.<br>
             <span class="highlight">Repositorio:</span> <a href="https://github.com/AlvaroPavon/StatTracker" target="_blank" rel="noopener noreferrer" style="color:var(--text-color);">Ver proyecto en GitHub</a>
         `,
 
@@ -71,6 +68,12 @@ document.addEventListener('DOMContentLoaded', () => {
             >> DATOS DE CONTACTO:<br>
             - <span class="highlight">Email:</span> <a href="mailto:alvaropavonmartinez7@gmail.com" style="color:inherit;">alvaropavonmartinez7@gmail.com</a><br>
             - <span class="highlight">Teléfono:</span> <a href="tel:+34662443794" style="color:inherit;">662 44 37 94</a>
+        `,
+
+        colaborar: `
+            <div class="highlight" style="display:inline-block; margin-bottom:10px;">[>] PROTOCOLO DE COLABORACIÓN INICIADO</div>
+            <p>¿Buscas compañero para un CTF en HackTheBox o apoyo en un proyecto backend?</p>
+            <p>> <a href="mailto:alvaropavonmartinez7@gmail.com?subject=Propuesta%20de%20Colaboración%20-%20Terminal%20OS&body=Hola%20Álvaro,%0A%0AHe%20visto%20tu%20portfolio%20y%20me%20gustaría%20comentarte%20una%20idea...%0A" style="color:var(--text-color); font-weight:bold; text-decoration:underline;">[ ENVIAR PROPUESTA DE COLABORACIÓN ]</a></p>
         `
     };
 
@@ -125,8 +128,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.querySelector('.input-line .prompt').textContent = 'root@alvaro-os:~#';
                 responseBlock.innerHTML = `
                     <div class="highlight" style="display:inline-block; margin-bottom:10px;">[!] PRIVILEGIOS ESCALADOS [!]</div>
-                    <p>> Acceso concedido. ¡Felicidades por encontrar el Easter Egg!</p>
-                    <p>> Escribe <span class="highlight">exit</span> para cerrar la sesión segura y volver al modo normal.</p>
+                    <p>> Acceso concedido al Easter Egg.</p>
+                    <p>> Escribe <span class="highlight">exit</span> para volver al modo normal.</p>
                 `;
             }
             terminalOutput.appendChild(responseBlock);
@@ -134,38 +137,35 @@ document.addEventListener('DOMContentLoaded', () => {
             if (isRoot) {
                 document.body.classList.remove('root-mode');
                 document.querySelector('.input-line .prompt').textContent = 'guest@alvaro-os:~$';
-                responseBlock.innerHTML = '> Cerrando sesión root... Privilegios devueltos a guest.';
+                responseBlock.innerHTML = '> Privilegios devueltos a guest.';
             } else {
                 responseBlock.innerHTML = '> Ya estás en la sesión estándar.';
             }
             terminalOutput.appendChild(responseBlock);
-        } else if (cmd === 'cv' || cmd === 'download_cv') {
-            // Generar descarga
+        } else if (cmd === 'cv') {
             const link = document.createElement('a');
             link.href = 'Alvaro_Pavon_Martinez_IT.pdf';
             link.download = 'Alvaro_Pavon_CV.pdf';
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
-            
-            responseBlock.innerHTML = '> Iniciando descarga del documento PDF original...';
+            responseBlock.innerHTML = '> Iniciando descarga del documento PDF...';
             terminalOutput.appendChild(responseBlock);
         } else if (cmd === 'proyectos') {
-            responseBlock.innerHTML = '> Estableciendo conexión con la API de GitHub...';
+            responseBlock.innerHTML = '> Conectando con GitHub API...';
             terminalOutput.appendChild(responseBlock);
             fetchGitHubRepos(responseBlock);
         } else if (systemData[cmd]) {
             responseBlock.innerHTML = systemData[cmd];
             terminalOutput.appendChild(responseBlock);
         } else {
-            responseBlock.innerHTML = `<span class="error-msg">bash: ${escapeHTML(cmd)}: command not found. Escriba 'help'.</span>`;
+            responseBlock.innerHTML = `<span class="error-msg">bash: ${escapeHTML(cmd)}: command not found.</span>`;
             terminalOutput.appendChild(responseBlock);
         }
 
         terminalOutput.scrollTop = terminalOutput.scrollHeight;
     }
 
-    // Autocompletado (TAB) y Enter
     const validCommands = Object.keys(systemData).concat(['clear', 'sudo su', 'exit', 'proyectos', 'cv']);
 
     cmdInput.addEventListener('keydown', (e) => {
@@ -182,17 +182,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Escuchar botones
     cmdButtons.forEach(btn => {
         btn.addEventListener('click', () => {
             executeCommand(btn.getAttribute('data-cmd'));
             cmdInput.focus();
         });
-    });
-
-    // Mantener foco
-    document.getElementById('terminal-wrapper').addEventListener('click', () => {
-        cmdInput.focus();
     });
 
     function escapeHTML(str) {
@@ -201,18 +195,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }[tag]));
     }
 
-    // --- FETCH GITHUB API SEGURA ---
     async function fetchGitHubRepos(container) {
         try {
             const response = await fetch(`https://api.github.com/users/AlvaroPavon/repos?sort=updated&per_page=6`);
             if (!response.ok) throw new Error('Error API');
-            
             const repos = await response.json();
-            container.innerHTML = '>> Repositorios descargados correctamente:<br>';
-            
+            container.innerHTML = '>> Repositorios descargados:<br>';
             const grid = document.createElement('div');
             grid.className = 'grid';
-
             repos.forEach(repo => {
                 if(repo.fork) return;
                 const card = document.createElement('div');
@@ -223,7 +213,7 @@ document.addEventListener('DOMContentLoaded', () => {
             container.appendChild(grid);
             terminalOutput.scrollTop = terminalOutput.scrollHeight;
         } catch (error) {
-            container.innerHTML = '<span class="error-msg">> [ERROR] Fallo al contactar con github.com.</span>';
+            container.innerHTML = '<span class="error-msg">> Error al contactar con GitHub.</span>';
         }
     }
 });
