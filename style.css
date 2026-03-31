@@ -1,10 +1,15 @@
+/* ==========================================
+   VARIABLES GLOBALES
+   Facilitan el cambio de tema de toda la web desde un solo lugar
+   ========================================== */
 :root {
-    --bg-color: #050505;
-    --text-color: #00ff41;
+    --bg-color: #050505; /* Fondo casi negro */
+    --text-color: #00ff41; /* Verde clásico "hacker" */
     --border-color: #008f11;
-    --font-terminal: 'Courier New', Courier, monospace;
+    --font-terminal: 'Courier New', Courier, monospace; /* Fuente de ancho fijo (monoespaciada) */
 }
 
+/* RESETEO Y CONFIGURACIÓN BASE DEL BODY */
 body, html {
     font-family: var(--font-terminal);
     background-color: var(--bg-color);
@@ -13,28 +18,38 @@ body, html {
     padding: 0;
     line-height: 1.6;
     height: 100vh;
-    overflow: hidden;
+    overflow: hidden; /* Evita que la página entera haga scroll, solo queremos scroll dentro de la terminal */
 }
 
+/* ==========================================
+   EFECTO DE MONITOR CRT (Líneas de escaneo)
+   Uso gradientes lineales fijos por encima de todo
+   ========================================== */
 .scanlines {
     position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
     background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
                 linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
     background-size: 100% 2px, 3px 100%; 
-    pointer-events: none; 
+    pointer-events: none; /* Crucial: permite que los clics atraviesen esta capa visual */
     z-index: 100;
 }
 
+/* ==========================================
+   EASTER EGG (MODO ROOT)
+   Sobrescribe las variables globales para cambiar la web a color ROJO
+   ========================================== */
 body.root-mode {
     --text-color: #ff3333;
     --border-color: #cc0000;
 }
 
 body.root-mode .scanlines {
+    /* Ajuste del tono de las líneas del monitor a rojo oscuro */
     background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(20, 0, 0, 0.4) 50%), 
                 linear-gradient(90deg, rgba(255, 0, 0, 0.1), rgba(0, 0, 0, 0), rgba(0, 0, 0, 0));
 }
 
+/* UTILIDADES Y DECORACIÓN */
 .highlight { 
     background: var(--border-color); 
     color: var(--bg-color); 
@@ -44,7 +59,7 @@ body.root-mode .scanlines {
 
 .ascii-art {
     font-family: monospace;
-    white-space: pre-wrap;
+    white-space: pre-wrap; /* Mantiene los espacios en blanco intactos para que no se deforme el dibujo */
     color: var(--text-color);
     margin-bottom: 1rem;
     font-size: 0.85rem;
@@ -53,11 +68,15 @@ body.root-mode .scanlines {
 .badge-img {
     margin-top: 10px;
     margin-bottom: 10px;
-    max-width: 100%;
+    max-width: 100%; /* Diseño Responsive: la imagen no se saldrá en móviles */
     border: 1px dashed var(--border-color);
     padding: 5px;
 }
 
+/* ==========================================
+   ESTILOS DE LA PANTALLA DE LOGIN
+   Uso Flexbox para centrado perfecto vertical y horizontalmente
+   ========================================== */
 .terminal-container { 
     height: 100vh; 
     display: flex; 
@@ -77,6 +96,8 @@ body.root-mode .scanlines {
 
 .input-group { margin-bottom: 1.5rem; }
 .input-group label { display: block; margin-bottom: 0.5rem; }
+
+/* Reseteo del diseño por defecto del input del navegador */
 input[type="text"], input[type="password"] { 
     width: 90%; 
     padding: 0.5rem; 
@@ -87,6 +108,7 @@ input[type="text"], input[type="password"] {
     outline: none; 
 }
 
+/* Botón interactivo */
 .btn-hack { 
     background: var(--text-color); 
     color: var(--bg-color); 
@@ -106,6 +128,7 @@ input[type="text"], input[type="password"] {
     border: 1px solid var(--text-color); 
 }
 
+/* Animación de parpadeo (CSS Keyframes) para simular un prompt antiguo */
 .blinking-text { 
     animation: blink 1s step-end infinite; 
     color: var(--text-color); 
@@ -113,45 +136,31 @@ input[type="text"], input[type="password"] {
 }
 @keyframes blink { 50% { opacity: 0; } }
 
-/* --- BOTÓN PARA RRHH --- */
-.hr-bypass {
-    margin-top: 2rem;
-    padding-top: 1rem;
-    border-top: 1px dashed var(--border-color);
-    text-align: center;
-}
-.hr-bypass p {
-    margin-bottom: 0.5rem;
-    font-size: 0.9rem;
-}
-.hr-link {
-    color: var(--text-color);
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 0.95rem;
-    transition: 0.3s;
-    display: inline-block;
-}
-.hr-link:hover {
-    background: var(--text-color);
-    color: var(--bg-color);
-}
+/* Vía de escape RRHH */
+.hr-bypass { margin-top: 2rem; padding-top: 1rem; border-top: 1px dashed var(--border-color); text-align: center; }
+.hr-bypass p { margin-bottom: 0.5rem; font-size: 0.9rem; }
+.hr-link { color: var(--text-color); text-decoration: none; font-weight: bold; font-size: 0.95rem; transition: 0.3s; display: inline-block; }
+.hr-link:hover { background: var(--text-color); color: var(--bg-color); }
 
+/* Clases de estado dinámico manipuladas por JavaScript */
 .hidden { display: none !important; }
 .fade-out { opacity: 0; pointer-events: none; }
 
+/* ==========================================
+   ESTILOS DE LA TERMINAL PRINCIPAL
+   ========================================== */
 #portfolio-content { 
     padding: 1rem; 
     height: 100vh; 
     box-sizing: border-box; 
-    animation: fadeIn 1s; 
+    animation: fadeIn 1s; /* Animación de entrada suave */
 }
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
 #terminal-wrapper { 
     height: 95%; 
     display: flex; 
-    flex-direction: column; 
+    flex-direction: column; /* Organiza el historial arriba y el input abajo */
     max-width: 1000px; 
     margin: auto; 
     border: 1px solid var(--border-color); 
@@ -161,6 +170,7 @@ input[type="text"], input[type="password"] {
     z-index: 10; 
 }
 
+/* Contenedor del historial con Scroll independiente */
 #terminal-output { 
     flex-grow: 1; 
     overflow-y: auto; 
@@ -170,9 +180,11 @@ input[type="text"], input[type="password"] {
     gap: 0.5rem; 
 }
 
+/* Personalización de la barra de Scroll nativa */
 #terminal-output::-webkit-scrollbar { width: 8px; }
 #terminal-output::-webkit-scrollbar-thumb { background: var(--border-color); }
 
+/* Bloque visual que envuelve la respuesta de cada comando */
 .output-block { 
     border-left: 2px solid var(--border-color); 
     padding-left: 1rem; 
@@ -184,6 +196,7 @@ input[type="text"], input[type="password"] {
 
 .error-msg { color: #ff3333; }
 
+/* MENÚ DE BOTONES (FLEXBOX para que salten de línea en pantallas pequeñas) */
 .cmd-menu { 
     display: flex; 
     gap: 10px; 
@@ -203,11 +216,9 @@ input[type="text"], input[type="password"] {
     transition: 0.2s;
 }
 
-.cmd-btn:hover { 
-    background: var(--text-color); 
-    color: var(--bg-color); 
-}
+.cmd-btn:hover { background: var(--text-color); color: var(--bg-color); }
 
+/* INPUT DE COMANDOS */
 .input-line { display: flex; align-items: center; }
 .prompt { font-weight: bold; margin-right: 10px; white-space: nowrap; }
 #cmd-input { 
@@ -220,6 +231,10 @@ input[type="text"], input[type="password"] {
     outline: none; 
 }
 
+/* ==========================================
+   SISTEMA DE GRID (Para inyectar las tarjetas de GitHub)
+   Uso Grid con 'auto-fit' para responsividad automática sin Media Queries
+   ========================================== */
 .grid { 
     display: grid; 
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
@@ -235,13 +250,9 @@ input[type="text"], input[type="password"] {
 }
 
 .card:hover { 
-    transform: translateY(-3px); 
+    transform: translateY(-3px); /* Pequeño salto al pasar el ratón */
     border-color: var(--text-color);
 }
 
-.card a { 
-    color: var(--text-color); 
-    text-decoration: none; 
-    font-weight: bold;
-}
+.card a { color: var(--text-color); text-decoration: none; font-weight: bold;}
 .card a:hover { text-decoration: underline; }
