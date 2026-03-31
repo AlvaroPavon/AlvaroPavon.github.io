@@ -11,29 +11,50 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Base de datos de CV extraída del documento
     const systemData = {
-        help: `Comandos disponibles: <br>- <span class="highlight">sobre_mi</span>: Perfil profesional<br>- <span class="highlight">experiencia</span>: Historial laboral<br>- <span class="highlight">formacion</span>: Historial académico<br>- <span class="highlight">capacidades</span>: Tecnologías y aptitudes<br>- <span class="highlight">proyectos</span>: Descargar repositorios de GitHub<br>- <span class="highlight">clear</span>: Limpiar pantalla`,
+        help: `Comandos disponibles: <br>- <span class="highlight">sobre_mi</span>: Perfil profesional<br>- <span class="highlight">experiencia</span>: Historial laboral<br>- <span class="highlight">formacion</span>: Historial académico<br>- <span class="highlight">cursos</span>: Formación complementaria<br>- <span class="highlight">capacidades</span>: Tecnologías y aptitudes<br>- <span class="highlight">proyectos</span>: Descargar repositorios de GitHub<br>- <span class="highlight">hackthebox</span>: Perfil en HTB y Redes<br>- <span class="highlight">contacto</span>: Vías de comunicación directa<br>- <span class="highlight">clear</span>: Limpiar pantalla`,
         
-        sobre_mi: `Álvaro Pavón Martínez. Programador Junior especializado en el desarrollo de aplicaciones y automatización de procesos con Python. Cuento con experiencia práctica en entornos Linux y conocimientos sólidos en programación. Soy un perfil resolutivo y autónomo, con gran capacidad de adaptación y muchas ganas de aprender.`,
+        sobre_mi: `Álvaro Pavón Martínez. Programador Junior especializado en el desarrollo de aplicaciones y automatización de procesos con Python. Cuento con experiencia práctica en entornos Linux y conocimientos sólidos en programación. Soy un perfil resolutivo y autónomo, con gran capacidad de adaptación y ganas de desarrollarme en entornos multiplataforma e infraestructuras complejas.`,
         
         experiencia: `
             <strong>> PlantaSur (2025)</strong><br>Programador Junior. Desarrollo de aplicaciones y scripts con Python. Automatización de procesos y generación de reportes.<br><br>
             <strong>> NanoBytes (2022)</strong><br>Programador Junior. Programación de aplicaciones con Python, JavaScript y gestión de bases de datos relacionales (SQL) en entornos ODOO.<br><br>
-            <strong>> MediaMarkt & Beep Informática (2021-2023)</strong><br>Asesor / Dependiente sección informática. Instalación de sistemas, reparación y montaje de dispositivos.
+            <strong>> MediaMarkt (2021-2023) & Beep Informática (2021)</strong><br>Asesor / Dependiente sección informática. Instalación de sistemas, reparación y montaje de dispositivos y atención al cliente.
         `,
         
         formacion: `
             - Especialización Ciberseguridad | IES Zaidin Vergeles (2025-2026 - En curso)<br>
             - FPGS. Desarrollo de Aplicaciones Multiplataforma | Atlántida CIDEP (2023-2025)<br>
-            - Certificado Programación sistemas informáticos | Academia El Futuro (2022)<br>
-            - Ciberseguridad | The Valley (2023)<br>
-            - Master completo en Java | Udemy (2022)
+            - Certificado de Profesionalidad: Programación de sistemas informáticos | Academia El Futuro (2022)
         `,
 
-        capacidades: `Python, Java / C, Linux / Bash Scripting, Bases de Datos Relacionales / SQL, Resolución de errores (Debugging), Windows, Eclipse, Visual Studio Code.<br>Aptitudes: Autonomía, Resolutivo, Flexibilidad, Dinámico, Puntual.`
+        cursos: `
+            >> FORMACIÓN COMPLEMENTARIA:<br>
+            - Ciberseguridad | The Valley (2023)<br>
+            - Master completo en Java | Udemy (2022)<br>
+            - Internet Seguro | KLC Formación (2021)<br>
+            - Desarrollo de Apps móviles | UCM & Google (2019)<br>
+            - Comercio Electrónico | EOI & Google (2019)<br>
+            - Cloud Computing | EOI & Google (2019)<br>
+            - Introducción al Desarrollo Web | IEI & Google (2017)
+        `,
+
+        capacidades: `<strong>> Lenguajes y Herramientas:</strong> Python, Java / C, Linux / Bash Scripting, Bases de Datos Relacionales / SQL, Debugging, Windows, Eclipse, Visual Studio Code.<br><strong>> Aptitudes:</strong> Autonomía, Resolutivo, Flexibilidad, Dinámico, Puntual.`,
+
+        contacto: `
+            >> DATOS DE CONTACTO:<br>
+            - <span class="highlight">Email:</span> <a href="mailto:alvaropavonmartinez7@gmail.com" style="color:inherit;">alvaropavonmartinez7@gmail.com</a><br>
+            - <span class="highlight">Teléfono:</span> <a href="tel:+34662443794" style="color:inherit;">662 44 37 94</a>
+        `,
+
+        hackthebox: `
+            >> PERFILES TÉCNICOS Y REDES:<br>
+            - <strong>HackTheBox:</strong> (Añade tu URL aquí en el código HTML/JS)<br>
+            - <strong>LinkedIn:</strong> (Añade tu URL aquí en el código HTML/JS)
+        `
     };
 
     // --- LÓGICA DE LOGIN ---
-    async function typeWriterEffect(element, text, speed = 50) {
+    async function typeWriterEffect(element, text, speed = 40) {
         element.value = '';
         for (let i = 0; i < text.length; i++) {
             element.value += text.charAt(i);
@@ -64,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const isRoot = document.body.classList.contains('root-mode');
         const currentPrompt = isRoot ? 'root@alvaro-os:~#' : 'guest@alvaro-os:~$';
 
-        // Imprimir comando introducido de forma segura (Previene XSS)
+        // Imprimir comando (Prevención XSS)
         const userLine = document.createElement('p');
         userLine.innerHTML = `<span class="prompt">${currentPrompt}</span> <span>${escapeHTML(cmd)}</span>`;
         terminalOutput.appendChild(userLine);
@@ -85,7 +106,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 responseBlock.innerHTML = `
                     <div class="highlight" style="display:inline-block; margin-bottom:10px;">[!] PRIVILEGIOS ESCALADOS [!]</div>
                     <p>> Acceso concedido. ¡Felicidades por encontrar el Easter Egg!</p>
-                    <p>> Como futuro experto en Ciberseguridad, sé lo importante que es proteger los sistemas, pero también premiar la curiosidad.</p>
                     <p>> Escribe <span class="highlight">exit</span> para cerrar la sesión segura y volver al modo normal.</p>
                 `;
             }
@@ -128,7 +148,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Mantener el foco en el input al hacer clic en la terminal
     document.getElementById('terminal-wrapper').addEventListener('click', () => {
         cmdInput.focus();
     });
