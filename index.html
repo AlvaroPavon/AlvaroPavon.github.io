@@ -3,39 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema Solar</title>
-    <link rel="stylesheet" href="./estilos/style.css">
+    <title>Álvaro Pavón Martínez | Portfolio Terminal</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <nav id="menu">
-        <ul>
-         <li class="titulo"><h3>Planetas del sistema Solar</h3>
-                <ul>
-                    <li><a href="html/mercurio.html">Mercurio</a>
-                    <li><a href="html/venus.html">Venus</a></li>
-                    <li><a href="html/la_tierra.html">La Tierra</a></li>
-                    <li><a href="html/marte.html">Marte</a></li>
-                    <li><a href="html/jupiter.html">Jupiter</a></li>
-                 <li><a href="html/saturno.html">Saturno</a></li>
-                 <li><a href="html/urano.html">Urano</a></li>
-                    <li><a href="html/neptuno.html">Neptuno</a></li>
-                 </ul>
-         <li class="satelites"><h3>Satelites</h3>
+    <div id="login-screen" class="terminal-container">
+        <div class="login-box">
+            <h2>> SISTEMA RESTRINGIDO_</h2>
+            <p class="sys-msg">Inicie sesión para ver el perfil.</p>
+            
+            <div class="input-group">
+                <label for="username">Usuario:</label>
+                <input type="text" id="username" readonly placeholder="...">
+            </div>
+            <div class="input-group">
+                <label for="password">Contraseña:</label>
+                <input type="password" id="password" readonly placeholder="...">
+            </div>
+            
+            <button id="hack-btn" class="btn-hack">> [ HACK ]_</button>
+            <p id="access-msg" class="hidden blinking-text">Autenticando... ACCESO CONCEDIDO</p>
+        </div>
+    </div>
+
+    <main id="portfolio-content" class="hidden">
+        <div class="scanlines"></div> <header class="terminal-header">
+            <h1>> ÁLVARO_PAVÓN_MARTÍNEZ</h1>
+            <p>## PROGRAMADOR JUNIOR | CIBERSEGURIDAD ##</p>
+        </header>
+
+        <section class="terminal-section">
+            <h2>> cat sobre_mi.txt</h2>
+            <p>Programador Junior especializado en el desarrollo de aplicaciones y automatización de procesos con Python[cite: 30]. Cuento con experiencia práctica en entornos Linux y conocimientos sólidos en programación[cite: 31]. Especialización en Ciberseguridad en curso[cite: 16].</p>
+            <p><strong>Capacidades:</strong> Python, Java / C, Linux / Bash Scripting, SQL[cite: 37, 38, 39, 40].</p>
+        </section>
+
+        <section class="terminal-section">
+            <h2>> ./listar_experiencia.sh</h2>
+            
+            <div class="card terminal-card">
+                <h3>> PlantaSur (2025)</h3>
+                <p>Programador Junior[cite: 4, 6]. Desarrollo de aplicaciones y scripts con Python[cite: 5]. Automatización de procesos y generación de reportes[cite: 5].</p>
+            </div>
+
+            <div class="card terminal-card">
+                <h3>> NanoBytes (2022)</h3>
+                <p>Programador Junior[cite: 9, 11]. Programación de aplicaciones con Python, JavaScript y gestión de bases de datos relacionales (SQL) en entornos ODOO[cite: 10].</p>
+            </div>
+            
+            <div class="card terminal-card">
+                <h3>> MediaMarkt & Beep Informática (2021-2023)</h3>
+                <p>Asesor / Dependiente sección informática[cite: 7]. Instalación de sistemas informáticos, reparación y montaje de dispositivos y atención al cliente[cite: 13, 14].</p>
+            </div>
+        </section>
+
+        <section class="terminal-section">
+            <h2>> cat formacion.log</h2>
             <ul>
-             <li><a href="html/sol.html">Sol</a></li>
-             <li><a href="html/la_luna.html">La Luna</a></li>
-         </ul>
-     </li>
-     </ul>
-     </nav>
-</header>
-<section class="contenido">
-    <div class="contenido-parrafos">
-    <p><img src="./img/sistemasolar.jpg" alt="Planetas" id="planetas">Bienvenido a la pagina web sobre el Sistema Solar</p>
-    <p></p>
-    <p class="parrafo2">En esta Web vremos los distintos planetas y satelites de nuestro sistema solar</p>
-</div>
-</section>
+                <li><strong>Especialización Ciberseguridad</strong> - IES Zaidin Vergeles (2025-2026)[cite: 16].</li>
+                <li><strong>FPGS. Desarrollo de Aplicaciones Multiplataforma</strong> - Atlántida CIDEP (2023-2025)[cite: 16, 17].</li>
+                <li><strong>Programación de sistemas informáticos</strong> - Academia El Futuro (2022)[cite: 18, 19].</li>
+            </ul>
+        </section>
+
+        <section class="terminal-section">
+            <h2>> fetch --github_repos</h2>
+            <div id="github-repos" class="grid">Cargando repositorios desde la API...</div>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
 </body>
 </html>
