@@ -5,6 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Álvaro Pavón | Terminal OS</title>
     <link rel="stylesheet" href="style.css">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-V2W144EH1S"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      // Configuración base de tu propiedad de Analytics
+      gtag('config', 'G-V2W144EH1S');
+    </script>
 </head>
 <body>
     <div id="login-screen" class="terminal-container">
@@ -26,14 +36,13 @@
             
             <div class="hr-bypass">
                 <p>¿Perfil de Recursos Humanos?</p>
-                <a href="Alvaro_Pavon_Martinez_IT.pdf" download="Alvaro_Pavon_CV.pdf" class="hr-link">> Descargar CV Tradicional (PDF)</a>
+                <a href="Alvaro_Pavon_Martinez_IT.pdf" download="Alvaro_Pavon_CV.pdf" id="hr-cv-link" class="hr-link">> Descargar CV Tradicional (PDF)</a>
             </div>
         </div>
     </div>
 
     <main id="portfolio-content" class="hidden">
         <canvas id="matrix-canvas" class="hidden"></canvas>
-        
         <div class="scanlines"></div>
         
         <div id="terminal-wrapper">
