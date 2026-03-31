@@ -30,24 +30,24 @@ document.addEventListener('DOMContentLoaded', () => {
         
         whoami: asciiLogo,
 
-        sobre_mi: `Álvaro Pavón Martínez. Programador Junior especializado en el desarrollo de aplicaciones y automatización de procesos con Python. Cuento con experiencia práctica en entornos Linux y conocimientos sólidos en programación. Perfil resolutivo y autónomo con gran capacidad de adaptación e interés en infraestructuras complejas.`,
+        sobre_mi: `Álvaro Pavón Martínez. Programador Junior especializado en el desarrollo de aplicaciones y automatización de procesos con Python[cite: 30]. Cuento con experiencia práctica en entornos Linux y conocimientos sólidos en programación[cite: 31]. Perfil resolutivo y autónomo con gran capacidad de adaptación e interés en infraestructuras complejas[cite: 32].`,
         
         experiencia: `
-            <strong>> PlantaSur (2025)</strong><br>Programador Junior. Desarrollo de aplicaciones y scripts con Python. Automatización de procesos y generación de reportes.<br><br>
-            <strong>> NanoBytes (2022)</strong><br>Programador Junior. Programación de aplicaciones con Python, JavaScript y gestión de bases de datos relacionales (SQL) en entornos ODOO.<br><br>
-            <strong>> MediaMarkt (2021-2023) & Beep Informática (2021)</strong><br>Asesor / Dependiente sección informática. Instalación de sistemas, reparación y montaje de dispositivos y atención al cliente.
+            <strong>> PlantaSur (2025)</strong><br>Programador Junior. Desarrollo de aplicaciones y scripts con Python[cite: 4, 5, 6]. Automatización de procesos y generación de reportes[cite: 5].<br><br>
+            <strong>> NanoBytes (2022)</strong><br>Programador Junior. Programación de aplicaciones con Python, JavaScript y gestión de bases de datos relacionales (SQL) en entornos ODOO[cite: 9, 10, 11].<br><br>
+            <strong>> MediaMarkt (2021-2023) & Beep Informática (2021)</strong><br>Asesor / Dependiente sección informática[cite: 7, 8, 12, 13, 14]. Instalación de sistemas, reparación y montaje de dispositivos[cite: 7, 13].
         `,
         
         formacion: `
             >> FORMACIÓN REGLADA:<br>
-            - Especialización Ciberseguridad | IES Zaidin Vergeles (2025-2026 - En curso).<br>
-            - FPGS. Desarrollo de Aplicaciones Multiplataforma | Atlántida CIDEP (2023-2025).<br>
-            - Certificado: Programación de sistemas informáticos | Academia El Futuro (2022).<br><br>
+            - Especialización Ciberseguridad | IES Zaidin Vergeles (2025-2026 - En curso)[cite: 15, 16].<br>
+            - FPGS. Desarrollo de Aplicaciones Multiplataforma | Atlántida CIDEP (2023-2025)[cite: 16, 17].<br>
+            - Certificado: Programación de sistemas informáticos | Academia El Futuro (2022)[cite: 18, 19].<br><br>
             >> FORMACIÓN COMPLEMENTARIA:<br>
-            - Master completo en Java | Udemy (2022).<br>
-            - Ciberseguridad | The Valley (2023).<br>
-            - Internet Seguro | KLC Formación (2021).<br>
-            - Apps móviles, E-Commerce, Cloud Computing | EOI & Google (2019).
+            - Master completo en Java | Udemy (2022)[cite: 21, 23].<br>
+            - Ciberseguridad | The Valley (2023)[cite: 21, 22].<br>
+            - Internet Seguro | KLC Formación (2021)[cite: 24].<br>
+            - Apps móviles, E-Commerce, Cloud Computing | EOI & Google (2019)[cite: 25, 26].
         `,
 
         proyecto_destacado: `
@@ -59,15 +59,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
         hackthebox: `
             >> PERFILES TÉCNICOS Y REDES:<br>
-            - <strong>HackTheBox:</strong> <a href="https://app.hackthebox.com/users/1504123?profile-top-tab=machines&ownership-period=1M&profile-bottom-tab=prolabs" target="_blank" rel="noopener noreferrer" style="color:var(--text-color);">Ver Perfil Completo</a><br>
+            - <strong>HackTheBox:</strong> <a href="https://app.hackthebox.com/users/1504123" target="_blank" rel="noopener noreferrer" style="color:var(--text-color);">Ver Perfil Completo</a><br>
             <a href="https://app.hackthebox.com/users/1504123" target="_blank" rel="noopener noreferrer"><img src="https://www.hackthebox.eu/badge/image/1504123" alt="HTB Badge" class="badge-img"></a><br>
             - <strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/alvaropavonmartinez/" target="_blank" rel="noopener noreferrer" style="color:var(--text-color);">Ver Perfil de LinkedIn</a>
         `,
 
         contacto: `
             >> DATOS DE CONTACTO:<br>
-            - <span class="highlight">Email:</span> <a href="mailto:alvaropavonmartinez7@gmail.com" style="color:inherit;">alvaropavonmartinez7@gmail.com</a><br>
-            - <span class="highlight">Teléfono:</span> <a href="tel:+34662443794" style="color:inherit;">662 44 37 94</a>
+            - <span class="highlight">Email:</span> <a href="mailto:alvaropavonmartinez7@gmail.com" style="color:inherit;">alvaropavonmartinez7@gmail.com [cite: 35]</a><br>
+            - <span class="highlight">Teléfono:</span> <a href="tel:+34662443794" style="color:inherit;">662 44 37 94 [cite: 34]</a>
         `,
 
         colaborar: `
@@ -77,7 +77,6 @@ document.addEventListener('DOMContentLoaded', () => {
         `
     };
 
-    // --- LÓGICA DE LOGIN ---
     async function typeWriterEffect(element, text, speed = 40) {
         element.value = '';
         for (let i = 0; i < text.length; i++) {
@@ -103,7 +102,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 800);
     });
 
-    // --- LÓGICA DEL INTÉRPRETE DE COMANDOS ---
     function executeCommand(command) {
         const cmd = command.toLowerCase().trim();
         const isRoot = document.body.classList.contains('root-mode');
@@ -159,14 +157,15 @@ document.addEventListener('DOMContentLoaded', () => {
             responseBlock.innerHTML = systemData[cmd];
             terminalOutput.appendChild(responseBlock);
         } else {
-            responseBlock.innerHTML = `<span class="error-msg">bash: ${escapeHTML(cmd)}: command not found.</span>`;
+            responseBlock.innerHTML = `<span class="error-msg">bash: ${escapeHTML(cmd)}: command not found. Escriba 'help'.</span>`;
             terminalOutput.appendChild(responseBlock);
         }
 
         terminalOutput.scrollTop = terminalOutput.scrollHeight;
     }
 
-    const validCommands = Object.keys(systemData).concat(['clear', 'sudo su', 'exit', 'proyectos', 'cv']);
+    // LISTA ACTUALIZADA DE COMANDOS VÁLIDOS (Incluye colaborar)
+    const validCommands = Object.keys(systemData).concat(['clear', 'sudo su', 'exit', 'proyectos', 'cv', 'colaborar']);
 
     cmdInput.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') {
@@ -187,6 +186,10 @@ document.addEventListener('DOMContentLoaded', () => {
             executeCommand(btn.getAttribute('data-cmd'));
             cmdInput.focus();
         });
+    });
+
+    document.getElementById('terminal-wrapper').addEventListener('click', () => {
+        cmdInput.focus();
     });
 
     function escapeHTML(str) {
