@@ -25,27 +25,28 @@ document.addEventListener('DOMContentLoaded', () => {
 ---------------------------------------
 </div>`;
 
+    // 1. BASE DE DATOS DE COMANDOS (Asegúrate de que 'colaborar' esté aquí)
     const systemData = {
         help: `Comandos disponibles: <br>- <span class="highlight">whoami</span>: Información del sistema<br>- <span class="highlight">sobre_mi</span>: Perfil profesional<br>- <span class="highlight">experiencia</span>: Historial laboral<br>- <span class="highlight">formacion</span>: Académico y cursos<br>- <span class="highlight">proyectos</span>: Descargar repositorios (GitHub)<br>- <span class="highlight">proyecto_destacado</span>: Deep Dive en StatTracker (PHP/MySQL)<br>- <span class="highlight">hackthebox</span>: Perfiles y Redes<br>- <span class="highlight">cv</span>: Descargar Currículum en PDF<br>- <span class="highlight">contacto</span>: Vías de comunicación<br>- <span class="highlight">colaborar</span>: Propuestas para desarrolladores<br>- <span class="highlight">clear</span>: Limpiar pantalla`,
         
         whoami: asciiLogo,
 
-        sobre_mi: `Álvaro Pavón Martínez. Programador Junior especializado en el desarrollo de aplicaciones y automatización de procesos con Python[cite: 30]. Cuento con experiencia práctica en entornos Linux y conocimientos sólidos en programación[cite: 31]. Perfil resolutivo y autónomo con gran capacidad de adaptación e interés en infraestructuras complejas[cite: 32].`,
+        sobre_mi: `Álvaro Pavón Martínez[cite: 1]. Programador Junior especializado en el desarrollo de aplicaciones y automatización de procesos con Python[cite: 30]. Cuento con experiencia práctica en entornos Linux y conocimientos sólidos en programación[cite: 31]. Perfil resolutivo y autónomo con gran capacidad de adaptación e interés en infraestructuras complejas[cite: 32].`,
         
         experiencia: `
-            <strong>> PlantaSur (2025)</strong><br>Programador Junior. Desarrollo de aplicaciones y scripts con Python[cite: 4, 5, 6]. Automatización de procesos y generación de reportes[cite: 5].<br><br>
-            <strong>> NanoBytes (2022)</strong><br>Programador Junior. Programación de aplicaciones con Python, JavaScript y gestión de bases de datos relacionales (SQL) en entornos ODOO[cite: 9, 10, 11].<br><br>
-            <strong>> MediaMarkt (2021-2023) & Beep Informática (2021)</strong><br>Asesor / Dependiente sección informática[cite: 7, 8, 12, 13, 14]. Instalación de sistemas, reparación y montaje de dispositivos[cite: 7, 13].
+            <strong>> PlantaSur (2025) [cite: 6]</strong><br>Programador Junior[cite: 4]. Desarrollo de aplicaciones y scripts con Python[cite: 5]. Automatización de procesos y generación de reportes[cite: 5].<br><br>
+            <strong>> NanoBytes (2022) [cite: 11]</strong><br>Programador Junior[cite: 9]. Programación de aplicaciones con Python, JavaScript y gestión de bases de datos relacionales (SQL) en entornos ODOO[cite: 10].<br><br>
+            <strong>> MediaMarkt (2021-2023) [cite: 8] & Beep Informática (2021) [cite: 14]</strong><br>Asesor / Dependiente sección informática[cite: 7, 12]. Instalación de sistemas, reparación y montaje de dispositivos[cite: 7, 13].
         `,
         
         formacion: `
             >> FORMACIÓN REGLADA:<br>
-            - Especialización Ciberseguridad | IES Zaidin Vergeles (2025-2026 - En curso)[cite: 15, 16].<br>
+            - Especialización Ciberseguridad | IES Zaidin Vergeles (2025-2026 - En curso)[cite: 16].<br>
             - FPGS. Desarrollo de Aplicaciones Multiplataforma | Atlántida CIDEP (2023-2025)[cite: 16, 17].<br>
-            - Certificado: Programación de sistemas informáticos | Academia El Futuro (2022)[cite: 18, 19].<br><br>
+            - Certificado: Programación de sistemas informáticos | Academia El Futuro (2022)[cite: 19].<br><br>
             >> FORMACIÓN COMPLEMENTARIA:<br>
-            - Master completo en Java | Udemy (2022)[cite: 21, 23].<br>
-            - Ciberseguridad | The Valley (2023)[cite: 21, 22].<br>
+            - Master completo en Java | Udemy (2022)[cite: 23].<br>
+            - Ciberseguridad | The Valley (2023)[cite: 22].<br>
             - Internet Seguro | KLC Formación (2021)[cite: 24].<br>
             - Apps móviles, E-Commerce, Cloud Computing | EOI & Google (2019)[cite: 25, 26].
         `,
@@ -59,9 +60,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         hackthebox: `
             >> PERFILES TÉCNICOS Y REDES:<br>
-            - <strong>HackTheBox:</strong> <a href="https://app.hackthebox.com/users/1504123" target="_blank" rel="noopener noreferrer" style="color:var(--text-color);">Ver Perfil Completo</a><br>
+            - <strong>HackTheBox[cite: 53]:</strong> <a href="https://app.hackthebox.com/users/1504123" target="_blank" rel="noopener noreferrer" style="color:var(--text-color);">Ver Perfil Completo</a><br>
             <a href="https://app.hackthebox.com/users/1504123" target="_blank" rel="noopener noreferrer"><img src="https://www.hackthebox.eu/badge/image/1504123" alt="HTB Badge" class="badge-img"></a><br>
-            - <strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/alvaropavonmartinez/" target="_blank" rel="noopener noreferrer" style="color:var(--text-color);">Ver Perfil de LinkedIn</a>
+            - <strong>LinkedIn[cite: 52]:</strong> <a href="https://www.linkedin.com/in/alvaropavonmartinez/" target="_blank" rel="noopener noreferrer" style="color:var(--text-color);">Ver Perfil de LinkedIn</a>
         `,
 
         contacto: `
@@ -102,6 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 800);
     });
 
+    // 2. MOTOR DE EJECUCIÓN MEJORADO
     function executeCommand(command) {
         const cmd = command.toLowerCase().trim();
         const isRoot = document.body.classList.contains('root-mode');
@@ -116,21 +118,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (cmd === '') {
             terminalOutput.removeChild(responseBlock);
-        } else if (cmd === 'clear') {
+            return;
+        }
+
+        // Lógica de comandos especiales
+        if (cmd === 'clear') {
             terminalOutput.innerHTML = '';
-        } else if (cmd === 'sudo su' || cmd === 'sudo') {
+            return;
+        } 
+        
+        if (cmd === 'sudo su' || cmd === 'sudo') {
             if (isRoot) {
                 responseBlock.innerHTML = '> Ya tienes privilegios máximos.';
             } else {
                 document.body.classList.add('root-mode');
                 document.querySelector('.input-line .prompt').textContent = 'root@alvaro-os:~#';
-                responseBlock.innerHTML = `
-                    <div class="highlight" style="display:inline-block; margin-bottom:10px;">[!] PRIVILEGIOS ESCALADOS [!]</div>
-                    <p>> Acceso concedido al Easter Egg.</p>
-                    <p>> Escribe <span class="highlight">exit</span> para volver al modo normal.</p>
-                `;
+                responseBlock.innerHTML = `<div class="highlight">[!] PRIVILEGIOS ESCALADOS [!]</div><p>> Escribe 'exit' para volver al modo normal.</p>`;
             }
-            terminalOutput.appendChild(responseBlock);
         } else if (cmd === 'exit') {
             if (isRoot) {
                 document.body.classList.remove('root-mode');
@@ -139,7 +143,6 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 responseBlock.innerHTML = '> Ya estás en la sesión estándar.';
             }
-            terminalOutput.appendChild(responseBlock);
         } else if (cmd === 'cv') {
             const link = document.createElement('a');
             link.href = 'Alvaro_Pavon_Martinez_IT.pdf';
@@ -147,26 +150,25 @@ document.addEventListener('DOMContentLoaded', () => {
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
-            responseBlock.innerHTML = '> Iniciando descarga del documento PDF...';
-            terminalOutput.appendChild(responseBlock);
+            responseBlock.innerHTML = '> Iniciando descarga del PDF...';
         } else if (cmd === 'proyectos') {
             responseBlock.innerHTML = '> Conectando con GitHub API...';
             terminalOutput.appendChild(responseBlock);
             fetchGitHubRepos(responseBlock);
+            return; 
         } else if (systemData[cmd]) {
+            // Si el comando existe en la base de datos, lo imprime
             responseBlock.innerHTML = systemData[cmd];
-            terminalOutput.appendChild(responseBlock);
         } else {
-            responseBlock.innerHTML = `<span class="error-msg">bash: ${escapeHTML(cmd)}: command not found. Escriba 'help'.</span>`;
-            terminalOutput.appendChild(responseBlock);
+            // Si no existe, lanza error
+            responseBlock.innerHTML = `<span class="error-msg">bash: ${escapeHTML(cmd)}: command not found.</span>`;
         }
 
+        terminalOutput.appendChild(responseBlock);
         terminalOutput.scrollTop = terminalOutput.scrollHeight;
     }
 
-    // LISTA ACTUALIZADA DE COMANDOS VÁLIDOS (Incluye colaborar)
-    const validCommands = Object.keys(systemData).concat(['clear', 'sudo su', 'exit', 'proyectos', 'cv', 'colaborar']);
-
+    // 3. AUTOCOMPLETADO DINÁMICO
     cmdInput.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') {
             executeCommand(cmdInput.value);
@@ -174,8 +176,9 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (e.key === 'Tab') {
             e.preventDefault(); 
             const currentVal = cmdInput.value.toLowerCase();
+            const allPossibleCmds = Object.keys(systemData).concat(['clear', 'sudo su', 'exit', 'proyectos', 'cv']);
             if (currentVal) {
-                const match = validCommands.find(c => c.startsWith(currentVal));
+                const match = allPossibleCmds.find(c => c.startsWith(currentVal));
                 if (match) cmdInput.value = match;
             }
         }
