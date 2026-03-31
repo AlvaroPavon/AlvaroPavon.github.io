@@ -32,13 +32,16 @@
     </div>
 
     <main id="portfolio-content" class="hidden">
+        <canvas id="matrix-canvas" class="hidden"></canvas>
+        
         <div class="scanlines"></div>
         
         <div id="terminal-wrapper">
             <div id="terminal-output">
                 <p>> ÁLVARO_OS v1.0.0 inicializado.</p>
                 <p>> Autenticación correcta. Bienvenido, invitado.</p>
-                <p>> Escriba <span class="highlight">help</span> o seleccione un comando del menú. (Puede usar la tecla TAB para autocompletar).</p>
+                <p>> Escriba <span class="highlight">help</span> o seleccione un comando del menú.</p>
+                <p style="color:#00ff41; opacity:0.8;"><i>[!] INFO: Este sistema contiene utilidades ocultas (CTF, nmap, logs...). Explora la terminal.</i></p>
             </div>
             
             <div id="command-menu" class="cmd-menu">

@@ -1,8 +1,5 @@
-// Esperar a que el HTML esté completamente cargado antes de ejecutar JS
 document.addEventListener('DOMContentLoaded', () => {
-    
-    // --- 1. CAPTURA DE REFERENCIAS DEL DOM ---
-    // Guardamos en constantes los elementos HTML con los que vamos a interactuar
+    // --- 1. REFERENCIAS AL DOM ---
     const btnHack = document.getElementById('hack-btn');
     const inputUser = document.getElementById('username');
     const inputPass = document.getElementById('password');
@@ -12,8 +9,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const terminalOutput = document.getElementById('terminal-output');
     const cmdInput = document.getElementById('cmd-input');
     const cmdButtons = document.querySelectorAll('.cmd-btn');
+    
+    // Almacén dinámico del historial de comandos introducidos por el usuario
+    let commandHistory = [];
 
-    // --- 2. DICCIONARIO ESTÁTICO DE DATOS ---
     const asciiLogo = `
 <div class="ascii-art">
     ___   __    _  __ ___   ___  ___ 
@@ -30,16 +29,20 @@ document.addEventListener('DOMContentLoaded', () => {
 ---------------------------------------
 </div>`;
 
-    // Objeto JSON que actúa como nuestra "Base de Datos" para las respuestas estándar de la terminal
+    // --- 2. BASE DE DATOS DE CV Y AYUDA ---
     const systemData = {
-        help: `Comandos disponibles: <br>- <span class="highlight">whoami</span>: Información del sistema<br>- <span class="highlight">sobre_mi</span>: Perfil profesional<br>- <span class="highlight">experiencia</span>: Historial laboral<br>- <span class="highlight">formacion</span>: Académico y cursos<br>- <span class="highlight">proyectos</span>: Descargar repositorios (GitHub)<br>- <span class="highlight">proyecto_destacado</span>: Deep Dive en StatTracker (PHP/MySQL)<br>- <span class="highlight">hackthebox</span>: Perfiles y Redes<br>- <span class="highlight">cv</span>: Descargar Currículum en PDF<br>- <span class="highlight">contacto</span>: Vías de comunicación<br>- <span class="highlight">colaborar</span>: Propuestas para desarrolladores<br>- <span class="highlight">clear</span>: Limpiar pantalla`,
+        help: `Comandos documentados: <br>- <span class="highlight">whoami</span>, <span class="highlight">sobre_mi</span>, <span class="highlight">experiencia</span>, <span class="highlight">formacion</span>, <span class="highlight">proyectos</span>, <span class="highlight">proyecto_destacado</span>, <span class="highlight">hackthebox</span>, <span class="highlight">cv</span>, <span class="highlight">contacto</span>, <span class="highlight">colaborar</span>, <span class="highlight">clear</span><br><br><span style="color:#ff3333;">>> PISTA TÉCNICA: Se han detectado funcionalidades de bash no listadas (CTF, logs, redes, matrix). Utilice la intuición...</span>`,
+        
         whoami: asciiLogo,
+
         sobre_mi: `Álvaro Pavón Martínez. Programador Junior especializado en el desarrollo de aplicaciones y automatización de procesos con Python. Cuento con experiencia práctica en entornos Linux y conocimientos sólidos en programación. Perfil resolutivo y autónomo con gran capacidad de adaptación e interés en infraestructuras complejas.`,
+        
         experiencia: `
             <strong>> PlantaSur (2025)</strong><br>Programador Junior. Desarrollo de aplicaciones y scripts con Python. Automatización de procesos y generación de reportes.<br><br>
             <strong>> NanoBytes (2022)</strong><br>Programador Junior. Programación de aplicaciones con Python, JavaScript y gestión de bases de datos relacionales (SQL) en entornos ODOO.<br><br>
             <strong>> MediaMarkt (2021-2023) & Beep Informática (2021)</strong><br>Asesor / Dependiente sección informática. Instalación de sistemas, reparación y montaje de dispositivos.
         `,
+        
         formacion: `
             >> FORMACIÓN REGLADA:<br>
             - Especialización Ciberseguridad | IES Zaidin Vergeles (2025-2026 - En curso).<br>
@@ -51,23 +54,27 @@ document.addEventListener('DOMContentLoaded', () => {
             - Internet Seguro | KLC Formación (2021).<br>
             - Desarrollo de Apps móviles, E-Commerce, Cloud Computing | EOI & Google (2019).
         `,
+
         proyecto_destacado: `
             >> DEEP DIVE: StatTracker - Gestión de Estadísticas de Salud<br>
             <span class="highlight">Descripción:</span> Aplicación web MVC en PHP y MySQL (PDO) para gestión de métricas corporales.<br>
             <span class="highlight">Seguridad:</span> Auditada bajo OWASP ASVS (Nivel 2). Uso de bcrypt para contraseñas y sentencias preparadas contra SQLi.<br>
             <span class="highlight">Repositorio:</span> <a href="https://github.com/AlvaroPavon/StatTracker" target="_blank" rel="noopener noreferrer" style="color:var(--text-color); font-weight:bold;">Ver proyecto en GitHub</a>
         `,
+
         hackthebox: `
             >> PERFILES TÉCNICOS Y REDES:<br>
-            - <strong>HackTheBox:</strong> <a href="https://app.hackthebox.com/users/1504123?profile-top-tab=machines&ownership-period=1M&profile-bottom-tab=prolabs" target="_blank" rel="noopener noreferrer" style="color:var(--text-color);">Ver Perfil Completo</a><br>
+            - <strong>HackTheBox:</strong> <a href="https://app.hackthebox.com/users/1504123" target="_blank" rel="noopener noreferrer" style="color:var(--text-color);">Ver Perfil Completo</a><br>
             <a href="https://app.hackthebox.com/users/1504123" target="_blank" rel="noopener noreferrer"><img src="https://www.hackthebox.eu/badge/image/1504123" alt="HTB Badge" class="badge-img"></a><br>
             - <strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/alvaropavonmartinez/" target="_blank" rel="noopener noreferrer" style="color:var(--text-color);">Ver Perfil de LinkedIn</a>
         `,
+
         contacto: `
             >> DATOS DE CONTACTO:<br>
-            - <span class="highlight">Email:</span> <a href="mailto:alvaropavonmartinez7@gmail.com" style="color:inherit;">alvaropavonmartinez7@gmail.com</a><br>
-            - <span class="highlight">Teléfono:</span> <a href="tel:+34662443794" style="color:inherit;">662 44 37 94</a>
+            - <span class="highlight">Email:</span> alvaropavonmartinez7@gmail.com<br>
+            - <span class="highlight">Teléfono:</span> 662 44 37 94
         `,
+
         colaborar: `
             <div class="highlight" style="display:inline-block; margin-bottom:10px;">[>] OPCIONES DE COLABORACIÓN Y NETWORKING</div>
             <p>¿Buscas compañero para un CTF, necesitas apoyo en un proyecto backend o simplemente quieres hacer networking?</p><br>
@@ -78,8 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
         `
     };
 
-    // --- 3. LÓGICA ASÍNCRONA (Animación de Login) ---
-    // Promesa para simular que un usuario teclea (efecto máquina de escribir)
+    // --- 3. FUNCIONES ASÍNCRONAS (Login y Efectos Visuales) ---
     async function typeWriterEffect(element, text, speed = 40) {
         element.value = '';
         for (let i = 0; i < text.length; i++) {
@@ -88,161 +94,212 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Evento disparado al pulsar "HACK"
-    btnHack.addEventListener('click', async () => {
-        btnHack.disabled = true; // Previene múltiples clics
+    // Efecto estilo Matrix Canvas (Easter Egg visual)
+    function startMatrixEffect() {
+        const canvas = document.getElementById('matrix-canvas');
+        canvas.classList.remove('hidden');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
         
-        // Ejecución asíncrona secuencial (await)
+        const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789$+-*/=%""\'#&_(),.;:?!\\|{}<>[]^~'.split('');
+        const fontSize = 16;
+        const columns = canvas.width / fontSize;
+        const drops = [];
+        for(let x = 0; x < columns; x++) drops[x] = 1;
+        
+        const matrixInterval = setInterval(() => {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#0F0';
+            ctx.font = fontSize + 'px monospace';
+            for(let i = 0; i < drops.length; i++) {
+                const text = letters[Math.floor(Math.random() * letters.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                if(drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+                drops[i]++;
+            }
+        }, 33);
+        
+        // Cierra el efecto Matrix al hacer clic en la pantalla
+        canvas.onclick = () => {
+            clearInterval(matrixInterval);
+            canvas.classList.add('hidden');
+        };
+    }
+
+    // Evento del Botón HACK
+    btnHack.addEventListener('click', async () => {
+        btnHack.disabled = true;
         await typeWriterEffect(inputUser, 'root_access');
         await typeWriterEffect(inputPass, '********');
-        
         btnHack.classList.add('hidden');
         accessMsg.classList.remove('hidden');
 
-        // Transición CSS para desvanecer el login y mostrar la terminal
         setTimeout(() => {
             loginScreen.classList.add('fade-out');
             setTimeout(() => {
-                loginScreen.classList.add('hidden'); // Elimina el elemento del flujo visual
-                portfolioContent.classList.remove('hidden'); // Muestra el contenedor principal
-                cmdInput.focus(); // Coloca el cursor directamente en la línea de comandos
-            }, 500); // Da tiempo a la transición de opacidad del CSS
+                loginScreen.classList.add('hidden');
+                portfolioContent.classList.remove('hidden');
+                cmdInput.focus(); 
+            }, 500);
         }, 800);
     });
 
-    // --- 4. MOTOR PRINCIPAL DEL INTÉRPRETE DE COMANDOS ---
+    // --- 4. MOTOR PRINCIPAL DE EJECUCIÓN Y ROUTING DE COMANDOS ---
     function executeCommand(command) {
-        // Normalización: convierte a minúsculas y quita espacios extra en los bordes
         const cmd = command.toLowerCase().trim();
         
-        // Verifica si hemos inyectado la clase 'root-mode' en el body
+        // Guardar en el historial siempre que no sea nulo ni el propio comando 'history'
+        if(cmd !== '' && cmd !== 'history') commandHistory.push(cmd);
+
         const isRoot = document.body.classList.contains('root-mode');
-        // Define el nombre del usuario dinámicamente según los permisos
         const currentPrompt = isRoot ? 'root@alvaro-os:~#' : 'guest@alvaro-os:~$';
 
-        // Imprimir en el historial el comando que introdujo el usuario
         const userLine = document.createElement('p');
-        // Usamos escapeHTML para evitar que nos inyecten código malicioso mediante el input
         userLine.innerHTML = `<span class="prompt">${currentPrompt}</span> <span>${escapeHTML(cmd)}</span>`;
         terminalOutput.appendChild(userLine);
 
-        // Crear el contenedor para la respuesta del sistema
         const responseBlock = document.createElement('div');
         responseBlock.className = 'output-block';
 
-        // LÓGICA DE ENRUTAMIENTO DE COMANDOS (IF/ELSE IF)
+        // EVALUACIÓN DE COMANDOS (Públicos y Ocultos)
         if (cmd === '') {
-            terminalOutput.removeChild(responseBlock); // Si está vacío, no imprime bloque de respuesta
+            terminalOutput.removeChild(responseBlock);
             return;
         } 
-        
-        if (cmd === 'clear') {
-            terminalOutput.innerHTML = ''; // Borra el DOM del historial
+        else if (cmd === 'clear') {
+            terminalOutput.innerHTML = '';
             return;
         } 
-        
-        if (cmd === 'sudo su' || cmd === 'sudo') {
+        // Comandos de utilidad (History y Date)
+        else if (cmd === 'date') {
+            responseBlock.innerHTML = `> Hora del sistema: ${new Date().toLocaleString()}`;
+        }
+        else if (cmd === 'history') {
+            if(commandHistory.length === 0) responseBlock.innerHTML = '> Historial vacío.';
+            else responseBlock.innerHTML = commandHistory.map((c, i) => `${i + 1}  ${escapeHTML(c)}`).join('<br>');
+        }
+        // Escaneo de puertos falso (NMAP)
+        else if (cmd === 'nmap' || cmd === 'scan' || cmd === 'nmap localhost') {
+            responseBlock.innerHTML = `
+                <p>Iniciando Nmap 7.93 ( https://nmap.org )</p>
+                <p>Nmap scan report for localhost (127.0.0.1)</p>
+                <p>PORT     STATE  SERVICE   REASON</p>
+                <p>22/tcp   open   ssh       Administración Linux & Bash Scripting</p>
+                <p>80/tcp   open   http      Desarrollo Web (HTML/CSS/JS)</p>
+                <p>443/tcp  open   https     Ciberseguridad & OWASP</p>
+                <p>3306/tcp open   mysql     Bases de Datos Relacionales (SQL)</p>
+                <p>8080/tcp open   http-alt  Python & Java Backend</p>
+            `;
+        }
+        // Reto CTF (Lectura de archivos sensibles)
+        else if (cmd === 'cat /etc/shadow') {
+            if (isRoot) {
+                // Muestra la "Bandera" solo si se escalaron privilegios antes
+                responseBlock.innerHTML = `
+                    <p style="word-wrap: break-word;">root:$6$hacker$flag{h1r3_m3_p134s3}:18000:0:99999:7:::</p>
+                    <div class="highlight">[!] FELICIDADES, HAS CAPTURADO LA BANDERA (FLAG)</div>
+                    <p>> Demostraste curiosidad y habilidades. Usa el comando 'colaborar' si estás en un proceso de selección.</p>
+                `;
+            } else {
+                responseBlock.innerHTML = `<span class="error-msg">cat: /etc/shadow: Permiso denegado. (Prueba a escalar privilegios primero...)</span>`;
+            }
+        }
+        // Easter Egg Matrix
+        else if (cmd === 'matrix') {
+            responseBlock.innerHTML = '> Iniciando protocolo Matrix... (Haz clic en cualquier parte para salir)';
+            startMatrixEffect();
+        }
+        // Escalada de privilegios
+        else if (cmd === 'sudo su' || cmd === 'sudo') {
             if (isRoot) {
                 responseBlock.innerHTML = '> Ya tienes privilegios máximos.';
             } else {
-                document.body.classList.add('root-mode'); // Cambia el CSS global a rojo
+                document.body.classList.add('root-mode');
                 document.querySelector('.input-line .prompt').textContent = 'root@alvaro-os:~#';
                 responseBlock.innerHTML = `
                     <div class="highlight" style="display:inline-block; margin-bottom:10px;">[!] PRIVILEGIOS ESCALADOS [!]</div>
-                    <p>> Acceso concedido al Easter Egg.</p>
+                    <p>> Acceso concedido al Root. Ahora puedes leer archivos restringidos.</p>
                     <p>> Escribe <span class="highlight">exit</span> para cerrar la sesión segura y volver al modo normal.</p>
                 `;
             }
         } 
-        
         else if (cmd === 'exit') {
             if (isRoot) {
-                document.body.classList.remove('root-mode'); // Revoca los privilegios (Vuelve a verde)
+                document.body.classList.remove('root-mode');
                 document.querySelector('.input-line .prompt').textContent = 'guest@alvaro-os:~$';
                 responseBlock.innerHTML = '> Cerrando sesión root... Privilegios devueltos a guest.';
             } else {
                 responseBlock.innerHTML = '> Ya estás en la sesión estándar. Nada que cerrar.';
             }
         } 
-        
+        // Lógica para descargar el CV en PDF
         else if (cmd === 'cv') {
-            // Script para forzar la descarga de un archivo local de forma transparente
             const link = document.createElement('a');
-            link.href = 'Alvaro_Pavon_Martinez_IT.pdf'; // Ruta del archivo
-            link.download = 'Alvaro_Pavon_CV.pdf'; // Nombre que verá el usuario al descargar
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
+            link.href = 'Alvaro_Pavon_Martinez_IT.pdf';
+            link.download = 'Alvaro_Pavon_CV.pdf';
+            document.body.appendChild(link); link.click(); document.body.removeChild(link);
             responseBlock.innerHTML = '> Iniciando descarga del documento PDF original...';
         } 
-        
+        // Conexión con GitHub
         else if (cmd === 'proyectos') {
             responseBlock.innerHTML = '> Estableciendo conexión con la API de GitHub...';
             terminalOutput.appendChild(responseBlock);
-            fetchGitHubRepos(responseBlock); // Delega la ejecución a la función Fetch
+            fetchGitHubRepos(responseBlock);
             return; 
         } 
-        
+        // Comandos Base Documentados
         else if (systemData[cmd]) {
-            // Busca directamente la clave en el objeto JSON de la base de datos
             responseBlock.innerHTML = systemData[cmd];
         } 
-        
+        // Comando No Encontrado
         else {
-            // Gestión de errores: el comando no se reconoce
             responseBlock.innerHTML = `<span class="error-msg">bash: ${escapeHTML(cmd)}: command not found. Escriba 'help'.</span>`;
         }
 
-        // Inyecta el bloque en el historial y fuerza el scroll hacia abajo
         terminalOutput.appendChild(responseBlock);
         terminalOutput.scrollTop = terminalOutput.scrollHeight;
     }
 
-    // --- 5. EVENTOS DE TECLADO Y AUTOCOMPLETADO ---
-    // Array que agrupa todas las claves estáticas y dinámicas para el autocompletado
-    const validCommands = Object.keys(systemData).concat(['clear', 'sudo su', 'exit', 'proyectos', 'cv']);
+    // --- 5. EVENTOS GLOBALES (Teclado, Botones y API) ---
+    // Agrupamos todos los comandos válidos (públicos y ocultos) para que el TAB los autocomplete
+    const validCommands = Object.keys(systemData).concat(['clear', 'sudo su', 'exit', 'proyectos', 'cv', 'date', 'history', 'nmap', 'scan', 'matrix']);
 
     cmdInput.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') {
-            executeCommand(cmdInput.value); // Dispara el motor
-            cmdInput.value = ''; // Limpia el input para el siguiente comando
+            executeCommand(cmdInput.value);
+            cmdInput.value = ''; 
         } else if (e.key === 'Tab') {
-            e.preventDefault(); // Evita que la tecla Tab cambie de elemento HTML en el navegador
+            e.preventDefault(); 
             const currentVal = cmdInput.value.toLowerCase();
             if (currentVal) {
-                // Busca la primera coincidencia en el array de comandos válidos
                 const match = validCommands.find(c => c.startsWith(currentVal));
-                if (match) cmdInput.value = match; // Autocompleta
+                if (match) cmdInput.value = match;
             }
         }
     });
 
-    // --- 6. EVENTOS DE LOS BOTONES DEL MENÚ ---
-    // Asigna un escuchador a todos los botones, recuperando el atributo 'data-cmd'
     cmdButtons.forEach(btn => {
         btn.addEventListener('click', () => {
             executeCommand(btn.getAttribute('data-cmd'));
-            cmdInput.focus(); // Devuelve la atención a la línea de comandos
+            cmdInput.focus(); 
         });
     });
 
-    // Mejora de usabilidad (UX): Al hacer clic en cualquier lado de la consola negra, selecciona el input
     document.getElementById('terminal-wrapper').addEventListener('click', () => {
         cmdInput.focus();
     });
 
-    // --- 7. CIBERSEGURIDAD: PREVENCIÓN XSS ---
-    // Función utilitaria que convierte caracteres especiales a entidades HTML, impidiendo la ejecución de scripts
     function escapeHTML(str) {
         return str.replace(/[&<>'"]/g, tag => ({
             '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
         }[tag]));
     }
 
-    // --- 8. CONSUMO DE APIS EXTERNAS (FETCH) ---
+    // Petición a la API de GitHub para mostrar los últimos 6 proyectos actualizados
     async function fetchGitHubRepos(container) {
         try {
-            // Llamada asíncrona a la API pública de GitHub para obtener repositorios ordenados por actualización
             const response = await fetch(`https://api.github.com/users/AlvaroPavon/repos?sort=updated&per_page=6`);
             if (!response.ok) throw new Error('Error API');
             
@@ -252,12 +309,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const grid = document.createElement('div');
             grid.className = 'grid';
 
-            // Iteramos sobre el JSON devuelto
             repos.forEach(repo => {
-                if(!repo.fork) { // Discriminamos los proyectos que no son de autoría propia (forks)
+                if(!repo.fork) {
                     const card = document.createElement('div');
                     card.className = 'card';
-                    // Inyección de Nodos al DOM aplicando escapeHTML para proteger frente a descripciones maliciosas inyectadas en GitHub
                     card.innerHTML = `<strong>> <a href="${repo.html_url}" target="_blank" rel="noopener noreferrer">${escapeHTML(repo.name)}</a></strong><br>Lang: ${escapeHTML(repo.language || 'Multi')}`;
                     grid.appendChild(card);
                 }
@@ -267,8 +322,7 @@ document.addEventListener('DOMContentLoaded', () => {
             terminalOutput.scrollTop = terminalOutput.scrollHeight;
             
         } catch (error) {
-            // Manejo de errores de red o fallo de la API
-            container.innerHTML = '<span class="error-msg">> [ERROR] Fallo al contactar con github.com. Revise su conexión.</span>';
+            container.innerHTML = '<span class="error-msg">> [ERROR] Fallo al contactar con github.com.</span>';
         }
     }
 });

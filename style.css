@@ -1,15 +1,11 @@
-/* ==========================================
-   VARIABLES GLOBALES
-   Facilitan el cambio de tema de toda la web desde un solo lugar
-   ========================================== */
+/* VARIABLES GLOBALES */
 :root {
-    --bg-color: #050505; /* Fondo casi negro */
-    --text-color: #00ff41; /* Verde clásico "hacker" */
+    --bg-color: #050505;
+    --text-color: #00ff41;
     --border-color: #008f11;
-    --font-terminal: 'Courier New', Courier, monospace; /* Fuente de ancho fijo (monoespaciada) */
+    --font-terminal: 'Courier New', Courier, monospace;
 }
 
-/* RESETEO Y CONFIGURACIÓN BASE DEL BODY */
 body, html {
     font-family: var(--font-terminal);
     background-color: var(--bg-color);
@@ -18,241 +14,79 @@ body, html {
     padding: 0;
     line-height: 1.6;
     height: 100vh;
-    overflow: hidden; /* Evita que la página entera haga scroll, solo queremos scroll dentro de la terminal */
+    overflow: hidden;
 }
 
-/* ==========================================
-   EFECTO DE MONITOR CRT (Líneas de escaneo)
-   Uso gradientes lineales fijos por encima de todo
-   ========================================== */
+/* EFECTO CRT Y MODO ROOT */
 .scanlines {
     position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
     background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
                 linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
     background-size: 100% 2px, 3px 100%; 
-    pointer-events: none; /* Crucial: permite que los clics atraviesen esta capa visual */
+    pointer-events: none; 
     z-index: 100;
 }
 
-/* ==========================================
-   EASTER EGG (MODO ROOT)
-   Sobrescribe las variables globales para cambiar la web a color ROJO
-   ========================================== */
-body.root-mode {
-    --text-color: #ff3333;
-    --border-color: #cc0000;
-}
-
+body.root-mode { --text-color: #ff3333; --border-color: #cc0000; }
 body.root-mode .scanlines {
-    /* Ajuste del tono de las líneas del monitor a rojo oscuro */
     background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(20, 0, 0, 0.4) 50%), 
                 linear-gradient(90deg, rgba(255, 0, 0, 0.1), rgba(0, 0, 0, 0), rgba(0, 0, 0, 0));
 }
 
-/* UTILIDADES Y DECORACIÓN */
-.highlight { 
-    background: var(--border-color); 
-    color: var(--bg-color); 
-    padding: 0 4px; 
-    font-weight: bold;
+/* EFECTO MATRIX (Oculto por defecto) */
+#matrix-canvas {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    z-index: 9999; /* Por encima de todo */
+    background: #000;
+    cursor: pointer;
 }
 
-.ascii-art {
-    font-family: monospace;
-    white-space: pre-wrap; /* Mantiene los espacios en blanco intactos para que no se deforme el dibujo */
-    color: var(--text-color);
-    margin-bottom: 1rem;
-    font-size: 0.85rem;
-}
+.highlight { background: var(--border-color); color: var(--bg-color); padding: 0 4px; font-weight: bold; }
+.ascii-art { font-family: monospace; white-space: pre-wrap; color: var(--text-color); margin-bottom: 1rem; font-size: 0.85rem; }
+.badge-img { margin-top: 10px; margin-bottom: 10px; max-width: 100%; border: 1px dashed var(--border-color); padding: 5px; }
 
-.badge-img {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    max-width: 100%; /* Diseño Responsive: la imagen no se saldrá en móviles */
-    border: 1px dashed var(--border-color);
-    padding: 5px;
-}
-
-/* ==========================================
-   ESTILOS DE LA PANTALLA DE LOGIN
-   Uso Flexbox para centrado perfecto vertical y horizontalmente
-   ========================================== */
-.terminal-container { 
-    height: 100vh; 
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
-    transition: opacity 0.5s; 
-}
-
-.login-box { 
-    border: 2px solid var(--border-color); 
-    padding: 2rem; 
-    width: 90%; 
-    max-width: 400px; 
-    background: #0a0a0a; 
-    z-index: 10;
-}
-
+/* LOGIN & RRHH BYPASS */
+.terminal-container { height: 100vh; display: flex; justify-content: center; align-items: center; transition: opacity 0.5s; }
+.login-box { border: 2px solid var(--border-color); padding: 2rem; width: 90%; max-width: 400px; background: #0a0a0a; z-index: 10;}
 .input-group { margin-bottom: 1.5rem; }
 .input-group label { display: block; margin-bottom: 0.5rem; }
-
-/* Reseteo del diseño por defecto del input del navegador */
-input[type="text"], input[type="password"] { 
-    width: 90%; 
-    padding: 0.5rem; 
-    background: transparent; 
-    border: 1px solid var(--border-color); 
-    color: var(--text-color); 
-    font-family: var(--font-terminal); 
-    outline: none; 
-}
-
-/* Botón interactivo */
-.btn-hack { 
-    background: var(--text-color); 
-    color: var(--bg-color); 
-    border: none; 
-    padding: 1rem; 
-    font-family: var(--font-terminal); 
-    font-weight: bold; 
-    cursor: pointer; 
-    width: 100%; 
-    margin-top: 1rem; 
-    transition: 0.3s;
-}
-
-.btn-hack:hover { 
-    background: var(--bg-color); 
-    color: var(--text-color); 
-    border: 1px solid var(--text-color); 
-}
-
-/* Animación de parpadeo (CSS Keyframes) para simular un prompt antiguo */
-.blinking-text { 
-    animation: blink 1s step-end infinite; 
-    color: var(--text-color); 
-    font-weight: bold;
-}
+input[type="text"], input[type="password"] { width: 90%; padding: 0.5rem; background: transparent; border: 1px solid var(--border-color); color: var(--text-color); font-family: var(--font-terminal); outline: none; }
+.btn-hack { background: var(--text-color); color: var(--bg-color); border: none; padding: 1rem; font-family: var(--font-terminal); font-weight: bold; cursor: pointer; width: 100%; margin-top: 1rem; transition: 0.3s; }
+.btn-hack:hover { background: var(--bg-color); color: var(--text-color); border: 1px solid var(--text-color); }
+.blinking-text { animation: blink 1s step-end infinite; color: var(--text-color); font-weight: bold; }
 @keyframes blink { 50% { opacity: 0; } }
 
-/* Vía de escape RRHH */
 .hr-bypass { margin-top: 2rem; padding-top: 1rem; border-top: 1px dashed var(--border-color); text-align: center; }
 .hr-bypass p { margin-bottom: 0.5rem; font-size: 0.9rem; }
 .hr-link { color: var(--text-color); text-decoration: none; font-weight: bold; font-size: 0.95rem; transition: 0.3s; display: inline-block; }
 .hr-link:hover { background: var(--text-color); color: var(--bg-color); }
 
-/* Clases de estado dinámico manipuladas por JavaScript */
 .hidden { display: none !important; }
 .fade-out { opacity: 0; pointer-events: none; }
 
-/* ==========================================
-   ESTILOS DE LA TERMINAL PRINCIPAL
-   ========================================== */
-#portfolio-content { 
-    padding: 1rem; 
-    height: 100vh; 
-    box-sizing: border-box; 
-    animation: fadeIn 1s; /* Animación de entrada suave */
-}
+/* TERMINAL PRINCIPAL */
+#portfolio-content { padding: 1rem; height: 100vh; box-sizing: border-box; animation: fadeIn 1s; }
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-#terminal-wrapper { 
-    height: 95%; 
-    display: flex; 
-    flex-direction: column; /* Organiza el historial arriba y el input abajo */
-    max-width: 1000px; 
-    margin: auto; 
-    border: 1px solid var(--border-color); 
-    padding: 1rem; 
-    background: rgba(5, 5, 5, 0.9); 
-    position: relative; 
-    z-index: 10; 
-}
-
-/* Contenedor del historial con Scroll independiente */
-#terminal-output { 
-    flex-grow: 1; 
-    overflow-y: auto; 
-    margin-bottom: 1rem; 
-    display: flex; 
-    flex-direction: column; 
-    gap: 0.5rem; 
-}
-
-/* Personalización de la barra de Scroll nativa */
+#terminal-wrapper { height: 95%; display: flex; flex-direction: column; max-width: 1000px; margin: auto; border: 1px solid var(--border-color); padding: 1rem; background: rgba(5, 5, 5, 0.9); position: relative; z-index: 10; }
+#terminal-output { flex-grow: 1; overflow-y: auto; margin-bottom: 1rem; display: flex; flex-direction: column; gap: 0.5rem; }
 #terminal-output::-webkit-scrollbar { width: 8px; }
 #terminal-output::-webkit-scrollbar-thumb { background: var(--border-color); }
 
-/* Bloque visual que envuelve la respuesta de cada comando */
-.output-block { 
-    border-left: 2px solid var(--border-color); 
-    padding-left: 1rem; 
-    margin-top: 0.5rem; 
-    background: #0a0a0a; 
-    padding-top: 0.5rem; 
-    padding-bottom: 0.5rem;
-}
-
+.output-block { border-left: 2px solid var(--border-color); padding-left: 1rem; margin-top: 0.5rem; background: #0a0a0a; padding-top: 0.5rem; padding-bottom: 0.5rem;}
 .error-msg { color: #ff3333; }
 
-/* MENÚ DE BOTONES (FLEXBOX para que salten de línea en pantallas pequeñas) */
-.cmd-menu { 
-    display: flex; 
-    gap: 10px; 
-    margin-bottom: 1rem; 
-    flex-wrap: wrap; 
-    border-top: 1px dashed var(--border-color); 
-    padding-top: 1rem;
-}
-
-.cmd-btn { 
-    background: transparent; 
-    color: var(--text-color); 
-    border: 1px dashed var(--border-color); 
-    padding: 5px 10px; 
-    cursor: pointer; 
-    font-family: var(--font-terminal); 
-    transition: 0.2s;
-}
-
+/* MENU Y COMANDOS */
+.cmd-menu { display: flex; gap: 10px; margin-bottom: 1rem; flex-wrap: wrap; border-top: 1px dashed var(--border-color); padding-top: 1rem;}
+.cmd-btn { background: transparent; color: var(--text-color); border: 1px dashed var(--border-color); padding: 5px 10px; cursor: pointer; font-family: var(--font-terminal); transition: 0.2s;}
 .cmd-btn:hover { background: var(--text-color); color: var(--bg-color); }
-
-/* INPUT DE COMANDOS */
 .input-line { display: flex; align-items: center; }
 .prompt { font-weight: bold; margin-right: 10px; white-space: nowrap; }
-#cmd-input { 
-    flex-grow: 1; 
-    border: none; 
-    background: transparent; 
-    color: var(--text-color); 
-    font-family: var(--font-terminal); 
-    font-size: 1rem; 
-    outline: none; 
-}
+#cmd-input { flex-grow: 1; border: none; background: transparent; color: var(--text-color); font-family: var(--font-terminal); font-size: 1rem; outline: none; }
 
-/* ==========================================
-   SISTEMA DE GRID (Para inyectar las tarjetas de GitHub)
-   Uso Grid con 'auto-fit' para responsividad automática sin Media Queries
-   ========================================== */
-.grid { 
-    display: grid; 
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
-    gap: 1rem; 
-    margin-top: 1rem; 
-}
-
-.card { 
-    border: 1px solid var(--border-color); 
-    padding: 1rem; 
-    transition: transform 0.2s; 
-    background: #0d0d0d;
-}
-
-.card:hover { 
-    transform: translateY(-3px); /* Pequeño salto al pasar el ratón */
-    border-color: var(--text-color);
-}
-
+/* GRID GITHUB */
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1rem; }
+.card { border: 1px solid var(--border-color); padding: 1rem; transition: transform 0.2s; background: #0d0d0d;}
+.card:hover { transform: translateY(-3px); border-color: var(--text-color);}
 .card a { color: var(--text-color); text-decoration: none; font-weight: bold;}
 .card a:hover { text-decoration: underline; }
