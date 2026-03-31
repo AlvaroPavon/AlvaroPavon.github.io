@@ -33,24 +33,24 @@ document.addEventListener('DOMContentLoaded', () => {
         
         whoami: asciiLogo,
 
-        sobre_mi: `Álvaro Pavón Martínez. Programador Junior especializado en el desarrollo de aplicaciones y automatización de procesos con Python. Cuento con experiencia práctica en entornos Linux y conocimientos sólidos en programación. Perfil resolutivo y autónomo con gran capacidad de adaptación e interés en infraestructuras complejas.`,
+        sobre_mi: `Álvaro Pavón Martínez. Programador Junior especializado en el desarrollo de aplicaciones y automatización de procesos con Python[cite: 30]. Cuento con experiencia práctica en entornos Linux y conocimientos sólidos en programación[cite: 31]. Perfil resolutivo y autónomo con gran capacidad de adaptación e interés en infraestructuras complejas[cite: 32].`,
         
         experiencia: `
-            <strong>> PlantaSur (2025)</strong><br>Programador Junior. Desarrollo de aplicaciones y scripts con Python. Automatización de procesos y generación de reportes.<br><br>
-            <strong>> NanoBytes (2022)</strong><br>Programador Junior. Programación de aplicaciones con Python, JavaScript y gestión de bases de datos relacionales (SQL) en entornos ODOO.<br><br>
-            <strong>> MediaMarkt (2021-2023) & Beep Informática (2021)</strong><br>Asesor / Dependiente sección informática. Instalación de sistemas, reparación y montaje de dispositivos.
+            <strong>> PlantaSur (2025)</strong><br>Programador Junior. Desarrollo de aplicaciones y scripts con Python. Automatización de procesos y generación de reportes[cite: 4, 5, 6].<br><br>
+            <strong>> NanoBytes (2022)</strong><br>Programador Junior. Programación de aplicaciones con Python, JavaScript y gestión de bases de datos relacionales (SQL) en entornos ODOO[cite: 9, 10, 11].<br><br>
+            <strong>> MediaMarkt (2021-2023) & Beep Informática (2021)</strong><br>Asesor / Dependiente sección informática[cite: 7, 12]. Instalación de sistemas, reparación y montaje de dispositivos[cite: 7, 13].
         `,
         
         formacion: `
             >> FORMACIÓN REGLADA:<br>
-            - Especialización Ciberseguridad | IES Zaidin Vergeles (2025-2026 - En curso).<br>
-            - FPGS. Desarrollo de Aplicaciones Multiplataforma | Atlántida CIDEP (2023-2025).<br>
-            - Certificado: Programación de sistemas informáticos | Academia El Futuro (2022). Administración y uso avanzado de terminal Linux y Bash Scripting.<br><br>
+            - Especialización Ciberseguridad | IES Zaidin Vergeles (2025-2026 - En curso)[cite: 16].<br>
+            - FPGS. Desarrollo de Aplicaciones Multiplataforma | Atlántida CIDEP (2023-2025)[cite: 16, 17].<br>
+            - Certificado: Programación de sistemas informáticos | Academia El Futuro (2022)[cite: 18, 19]. Administración y uso avanzado de terminal Linux y Bash Scripting[cite: 19].<br><br>
             >> FORMACIÓN COMPLEMENTARIA:<br>
-            - Master completo en Java | Udemy (2022).<br>
-            - Ciberseguridad | The Valley (2023).<br>
-            - Internet Seguro | KLC Formación (2021).<br>
-            - Desarrollo de Apps móviles, E-Commerce, Cloud Computing | EOI & Google (2019).
+            - Master completo en Java | Udemy (2022)[cite: 23].<br>
+            - Ciberseguridad | The Valley (2023)[cite: 22].<br>
+            - Internet Seguro | KLC Formación (2021)[cite: 24].<br>
+            - Desarrollo de Apps móviles, E-Commerce, Cloud Computing | EOI & Google (2019)[cite: 25, 26].
         `,
 
         proyecto_destacado: `
@@ -62,23 +62,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
         hackthebox: `
             >> PERFILES TÉCNICOS Y REDES:<br>
-            - <strong>HackTheBox:</strong> <a href="https://app.hackthebox.com/users/1504123?profile-top-tab=machines&ownership-period=1M&profile-bottom-tab=prolabs" target="_blank" rel="noopener noreferrer" style="color:var(--text-color);">Ver Perfil Completo</a><br>
+            - <strong>HackTheBox:</strong> <a href="https://app.hackthebox.com/users/1504123?profile-top-tab=machines&ownership-period=1M&profile-bottom-tab=prolabs" target="_blank" rel="noopener noreferrer" style="color:var(--text-color);">Ver Perfil Completo</a> [cite: 53]<br>
             <a href="https://app.hackthebox.com/users/1504123" target="_blank" rel="noopener noreferrer"><img src="https://www.hackthebox.eu/badge/image/1504123" alt="HTB Badge" class="badge-img"></a><br>
-            - <strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/alvaropavonmartinez/" target="_blank" rel="noopener noreferrer" style="color:var(--text-color);">Ver Perfil de LinkedIn</a>
+            - <strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/alvaropavonmartinez/" target="_blank" rel="noopener noreferrer" style="color:var(--text-color);">Ver Perfil de LinkedIn</a> [cite: 52]
         `,
 
         contacto: `
             >> DATOS DE CONTACTO:<br>
-            - <span class="highlight">Email:</span> <a href="mailto:alvaropavonmartinez7@gmail.com" style="color:inherit;">alvaropavonmartinez7@gmail.com</a><br>
-            - <span class="highlight">Teléfono:</span> <a href="tel:+34662443794" style="color:inherit;">662 44 37 94</a>
+            - <span class="highlight">Email:</span> alvaropavonmartinez7@gmail.com [cite: 35]<br>
+            - <span class="highlight">Teléfono:</span> 662 44 37 94 [cite: 34]
         `,
 
         colaborar: `
             <div class="highlight" style="display:inline-block; margin-bottom:10px;">[>] OPCIONES DE COLABORACIÓN Y NETWORKING</div>
             <p>¿Buscas compañero para un CTF, necesitas apoyo en un proyecto backend o simplemente quieres hacer networking?</p>
-            <p><strong>1. Copiar mi Email:</strong> <button onclick="navigator.clipboard.writeText('alvaropavonmartinez7@gmail.com'); alert('¡Email copiado al portapapeles!');" style="background:var(--text-color); color:var(--bg-color); border:none; padding:3px 8px; cursor:pointer; font-family:inherit; font-weight:bold; margin-left:10px;">COPIAR CORREO</button></p>
-            <p><strong>2. Contactar por LinkedIn:</strong> <a href="https://www.linkedin.com/in/alvaropavonmartinez/" target="_blank" style="color:var(--text-color); text-decoration:underline;">Enviar un mensaje directo</a></p>
+            <br>
+            <p><strong>1. Escríbeme desde Gmail Web:</strong> <a href="https://mail.google.com/mail/?view=cm&fs=1&to=alvaropavonmartinez7@gmail.com&su=Propuesta%20de%20Colaboración" target="_blank" style="color:var(--text-color); text-decoration:underline;">Abrir Gmail en una pestaña nueva</a></p>
+            <p><strong>2. Contactar por LinkedIn:</strong> <a href="https://www.linkedin.com/in/alvaropavonmartinez/" target="_blank" style="color:var(--text-color); text-decoration:underline;">Enviar un mensaje directo</a> [cite: 52]</p>
             <p><strong>3. Colaborar en código:</strong> <a href="https://github.com/AlvaroPavon" target="_blank" style="color:var(--text-color); text-decoration:underline;">Abrir un Issue o PR en mi GitHub</a></p>
+            <br>
+            <p><em>O simplemente copia mi correo manualmente:</em> <span class="highlight" style="user-select: all;">alvaropavonmartinez7@gmail.com</span> [cite: 35]</p>
         `
     };
 
@@ -113,34 +116,28 @@ document.addEventListener('DOMContentLoaded', () => {
     function executeCommand(command) {
         const cmd = command.toLowerCase().trim();
         
-        // Comprobar si el Easter Egg de Root está activado
         const isRoot = document.body.classList.contains('root-mode');
         const currentPrompt = isRoot ? 'root@alvaro-os:~#' : 'guest@alvaro-os:~$';
 
-        // 1. Imprimir el comando que ha escrito el usuario (Escapado para evitar XSS)
+        // Imprimir comando introducido
         const userLine = document.createElement('p');
         userLine.innerHTML = `<span class="prompt">${currentPrompt}</span> <span>${escapeHTML(cmd)}</span>`;
         terminalOutput.appendChild(userLine);
 
-        // 2. Preparar el bloque de respuesta
         const responseBlock = document.createElement('div');
         responseBlock.className = 'output-block';
 
-        // 3. Evaluar el comando
         if (cmd === '') {
-            // Si pulsa Enter en blanco, no imprime ningún bloque extra
             terminalOutput.removeChild(responseBlock);
             return;
         } 
         
         if (cmd === 'clear') {
-            // Limpia todo el historial de la pantalla
             terminalOutput.innerHTML = '';
             return;
         } 
         
         if (cmd === 'sudo su' || cmd === 'sudo') {
-            // Activar Easter Egg (Modo Root)
             if (isRoot) {
                 responseBlock.innerHTML = '> Ya tienes privilegios máximos.';
             } else {
@@ -155,7 +152,6 @@ document.addEventListener('DOMContentLoaded', () => {
         } 
         
         else if (cmd === 'exit') {
-            // Desactivar Easter Egg
             if (isRoot) {
                 document.body.classList.remove('root-mode');
                 document.querySelector('.input-line .prompt').textContent = 'guest@alvaro-os:~$';
@@ -166,9 +162,8 @@ document.addEventListener('DOMContentLoaded', () => {
         } 
         
         else if (cmd === 'cv') {
-            // Lógica forzada para descargar el PDF original
             const link = document.createElement('a');
-            link.href = 'Alvaro_Pavon_Martinez_IT.pdf'; // El archivo PDF debe estar en la misma carpeta
+            link.href = 'Alvaro_Pavon_Martinez_IT.pdf';
             link.download = 'Alvaro_Pavon_CV.pdf';
             document.body.appendChild(link);
             link.click();
@@ -177,7 +172,6 @@ document.addEventListener('DOMContentLoaded', () => {
         } 
         
         else if (cmd === 'proyectos') {
-            // Llamada dinámica a la API de GitHub
             responseBlock.innerHTML = '> Estableciendo conexión con la API de GitHub...';
             terminalOutput.appendChild(responseBlock);
             fetchGitHubRepos(responseBlock);
@@ -185,22 +179,18 @@ document.addEventListener('DOMContentLoaded', () => {
         } 
         
         else if (systemData[cmd]) {
-            // Si el comando está en nuestra Base de Datos, imprime su contenido
             responseBlock.innerHTML = systemData[cmd];
         } 
         
         else {
-            // Comando no reconocido
             responseBlock.innerHTML = `<span class="error-msg">bash: ${escapeHTML(cmd)}: command not found. Escriba 'help'.</span>`;
         }
 
-        // Añadir la respuesta a la pantalla y hacer Auto-Scroll hacia abajo
         terminalOutput.appendChild(responseBlock);
         terminalOutput.scrollTop = terminalOutput.scrollHeight;
     }
 
-    // --- EVENTOS DE TECLADO (ENTER Y TABULADOR PARA AUTOCOMPLETAR) ---
-    // Recopilamos todos los comandos válidos del sistema
+    // --- EVENTOS DE TECLADO ---
     const validCommands = Object.keys(systemData).concat(['clear', 'sudo su', 'exit', 'proyectos', 'cv']);
 
     cmdInput.addEventListener('keydown', (e) => {
@@ -208,7 +198,7 @@ document.addEventListener('DOMContentLoaded', () => {
             executeCommand(cmdInput.value);
             cmdInput.value = ''; 
         } else if (e.key === 'Tab') {
-            e.preventDefault(); // Evita que el foco salte a otro elemento
+            e.preventDefault(); 
             const currentVal = cmdInput.value.toLowerCase();
             if (currentVal) {
                 const match = validCommands.find(c => c.startsWith(currentVal));
@@ -217,27 +207,26 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // --- EVENTOS DE CLIC PARA LOS BOTONES DEL MENÚ ---
+    // --- EVENTOS DE BOTONES ---
     cmdButtons.forEach(btn => {
         btn.addEventListener('click', () => {
             executeCommand(btn.getAttribute('data-cmd'));
-            cmdInput.focus(); // Devuelve el cursor a la línea de comandos
+            cmdInput.focus(); 
         });
     });
 
-    // Mantener el cursor activo al hacer clic en cualquier parte de la terminal
     document.getElementById('terminal-wrapper').addEventListener('click', () => {
         cmdInput.focus();
     });
 
-    // --- FUNCIÓN DE SEGURIDAD CONTRA XSS ---
+    // --- SEGURIDAD XSS ---
     function escapeHTML(str) {
         return str.replace(/[&<>'"]/g, tag => ({
             '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
         }[tag]));
     }
 
-    // --- CONSUMO DE LA API DE GITHUB ---
+    // --- API DE GITHUB ---
     async function fetchGitHubRepos(container) {
         try {
             const response = await fetch(`https://api.github.com/users/AlvaroPavon/repos?sort=updated&per_page=6`);
@@ -250,11 +239,9 @@ document.addEventListener('DOMContentLoaded', () => {
             grid.className = 'grid';
 
             repos.forEach(repo => {
-                // Filtramos los repositorios que sean forks (copias de otros)
                 if(!repo.fork) {
                     const card = document.createElement('div');
                     card.className = 'card';
-                    // Construcción segura del HTML inyectado
                     card.innerHTML = `<strong>> <a href="${repo.html_url}" target="_blank" rel="noopener noreferrer">${escapeHTML(repo.name)}</a></strong><br>Lang: ${escapeHTML(repo.language || 'Multi')}`;
                     grid.appendChild(card);
                 }
